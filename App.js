@@ -9,6 +9,8 @@ import WelcomeScreen from './screens/WelcomeScreen';
 import AddNewIdiomScreen from './screens/AddNewIdiomsScreen';
 import ExploreIdiomsScreen from './screens/ExploreIdiomsScreen';
 
+import PaginaInicio from './screens/PaginaInicio';
+
 const Stack = createNativeStackNavigator();
 
 export default function App() {
@@ -21,6 +23,7 @@ export default function App() {
         <Stack.Screen name="SignUp" component={SignUpScreen} />
         <Stack.Screen name="ExploreIdioms" component={ExploreIdiomsScreen} />
         <Stack.Screen name="AddNewIdiom" component={AddNewIdiomScreen} />
+        <Stack.Screen name="Inicio" component={PaginaInicio} />
       </Stack.Navigator>
     </NavigationContainer>
   );
