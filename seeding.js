@@ -1,5 +1,5 @@
 const { firebase } = require('./config');
-const seedData = require('./seedData');
+const seedData = require('./data/seedData');
 
 const seeding = async function () {
   try {
