@@ -46,11 +46,12 @@ const styles = StyleSheet.create({
     // backgroundColor: '#fff',
   },
   button: {
-    backgroundColor: '#8a2be2',
+    backgroundColor: '#ba55d3',
     paddingVertical: 10,
     paddingHorizontal: 20,
     borderRadius: 8,
     marginVertical: 5,
+    marginBottom: 20,
   },
   buttonText: {
     color: 'white',

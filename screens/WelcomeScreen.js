@@ -19,7 +19,14 @@ const WelcomeScreen = ({ navigation }) => {
   return (
     <View style={{flex:1}}>
       <LinearGradient colors={['#09203F', '#3b5998', '#1EAE98']} style={{flex:1}}>
-      <View style={styles.container}>
+        <View style={styles.container}>
+          <Image source={require('../icons/world.png')} style= {{
+            height:120,
+            width:190,
+            // position: 'absolute',
+            marginRight: 10,
+            marginTop: 40,
+          }}/>
           <Text style={styles.title}>Welcome to WikIDIOM!</Text>
           <TouchableOpacity style={styles.button} onPress={handleStartButtonPress}>
             <Text style={styles.buttonText}>Start</Text>
@@ -51,7 +58,7 @@ const styles = StyleSheet.create({
     fontSize: 50,
     fontWeight: 'bold',
     marginBottom: 30,
-    marginTop: 150, 
+    marginTop: 40, 
     fontFamily: 'notoserif',
     color:'white'
   },
@@ -65,7 +72,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   button: {
-    backgroundColor: '#8a2be2',
+    backgroundColor: '#ba55d3',
     paddingVertical: 10,
     paddingHorizontal: 20,
     borderRadius: 8,
