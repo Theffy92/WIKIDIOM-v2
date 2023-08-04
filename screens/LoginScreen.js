@@ -2,8 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigation } from '@react-navigation/core';
 import { KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { auth } from '../config';
-import ExploreIdiomsScreen from './ExploreIdiomsScreen';
-import AddNewIdiomsScreen from './AddNewIdiomsScreen';
+import HomeUserScreen from './HomeUserScreen';
 
 const LoginScreen = () => {
   const [email, setEmail] = useState('');
@@ -21,14 +20,6 @@ const LoginScreen = () => {
     return unsubscribe;
   }, [])
 
-  // const handleLogin = () => {
-  //   auth
-  //     .signInWithEmailAndPassword(email, password)
-  //     .then(() => {
-  //       console.log('Successfully logged in with: ', email);
-  //     })
-  //     .catch(error => alert(error.message))
-  // }
   const handleLogin = () => {
     auth
       .signInWithEmailAndPassword(email, password)
@@ -37,11 +28,9 @@ const LoginScreen = () => {
         // Check if user is logged in
         const user = auth.currentUser;
         if (user) {
-          // User is logged in, navigate to ExploreIdiomsScreen
-          navigation.navigate('ExploreIdioms');
-          navigation.navigate('AddNewIdiom');
+          navigation.navigate('HomeUser');
         } else {
-          // User is not logged in (guest), navigate to AddNewIdiomScreen
+          // User is not logged in (guest), navigate to Explore Idioms
           navigation.navigate('ExploreIdioms');
         }
       })
@@ -106,7 +95,7 @@ const styles = StyleSheet.create({
     marginTop: 40,
   },
   button: {
-    backgroundColor: '#0782F9',
+    backgroundColor: '#730A9997',
     width: '100%',
     padding: 15,
     borderRadius: 10,
@@ -115,7 +104,7 @@ const styles = StyleSheet.create({
   buttonOutline: {
     backgroundColor: 'white',
     marginTop: 5,
-    borderColor: '#0782F9',
+    borderColor: '#730A9997',
     borderWidth: 2,
   },
   buttonText: {
@@ -124,7 +113,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   buttonOutlineText: {
-    color: '#0782F9',
+    color: '#730A9997',
     fontWeight: '700',
     fontSize: 16,
   },

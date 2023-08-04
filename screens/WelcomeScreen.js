@@ -20,7 +20,7 @@ const WelcomeScreen = ({ navigation }) => {
     <View style={{flex:1}}>
       <LinearGradient colors={['#09203F', '#3b5998', '#1EAE98']} style={{flex:1}}>
         <View style={styles.container}>
-          <Image source={require('../icons/world.png')} style= {{
+          <Image source={require('../icons/world-removebg-preview.png')} style= {{
             height:120,
             width:190,
             // position: 'absolute',

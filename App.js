@@ -10,6 +10,8 @@ import AddNewIdiomScreen from './screens/AddNewIdiomsScreen';
 import ExploreIdiomsScreen from './screens/ExploreIdiomsScreen';
 
 import PaginaInicio from './screens/PaginaInicio';
+import HomeUserScreen from './screens/HomeUserScreen';
+import IdiomDetailsScreen from './screens/IdiomDetailsScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -18,12 +20,14 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen name="Welcome" component={WelcomeScreen} options={{ headerShown: false }} />
+        <Stack.Screen name="HomeUser" component={HomeUserScreen}/>
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="SignUp" component={SignUpScreen} />
         <Stack.Screen name="ExploreIdioms" component={ExploreIdiomsScreen} />
         <Stack.Screen name="AddNewIdiom" component={AddNewIdiomScreen} />
         <Stack.Screen name="Inicio" component={PaginaInicio} />
+        <Stack.Screen name="IdiomDetails" component={IdiomDetailsScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
