@@ -3,10 +3,6 @@ import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 
 
-
-import Colors from '../constants/styles';
-
-
 const WelcomeScreen = ({ navigation }) => {
   const handleStartButtonPress = () => {
     navigation.navigate('Home'); // Navigate to the LoginScreen when Start button is pressed
@@ -19,14 +15,12 @@ const WelcomeScreen = ({ navigation }) => {
   const handleEnglishButtonPress = () => {
     navigation.navigate('Home');
   };
-  
 
   return (
-
     <View style={{flex:1}}>
-      <LinearGradient colors={['#4c669f', '#3b5998', '#192f6a']} style={{flex:1}}>
+      <LinearGradient colors={['#09203F', '#3b5998', '#1EAE98']} style={{flex:1}}>
       <View style={styles.container}>
-          <Text style={styles.title}>Welcome to Wikidiom!</Text>
+          <Text style={styles.title}>Welcome to WikIDIOM!</Text>
           <TouchableOpacity style={styles.button} onPress={handleStartButtonPress}>
             <Text style={styles.buttonText}>Start</Text>
           </TouchableOpacity>
@@ -38,15 +32,11 @@ const WelcomeScreen = ({ navigation }) => {
               <TouchableOpacity style={[styles.languageButton]} onPress={handleEnglishButtonPress} >
               <Image source={require('../icons/united-states.png')} />
               </TouchableOpacity>
-
             </View>
           </View>
         </View>
-      
       </LinearGradient>
     </View> 
-
-    
   );
 };
 
@@ -60,9 +50,9 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 50,
     fontWeight: 'bold',
-    marginBottom: 20,
-    marginTop: 100, 
-    fontFamily: 'Cochin',
+    marginBottom: 30,
+    marginTop: 150, 
+    fontFamily: 'notoserif',
     color:'white'
   },
   buttonContainer: {
@@ -75,14 +65,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   button: {
-    backgroundColor: '#0782F9',
+    backgroundColor: '#8a2be2',
     paddingVertical: 10,
     paddingHorizontal: 20,
     borderRadius: 8,
     marginRights: 10,
   },
   languageButton: {
-    marginBottom: 10,
+    marginBottom: 20,
     marginRight: 20,
     marginLeft: 20,
   },
