@@ -26,6 +26,8 @@ export default function App() {
         <Stack.Screen name="SignUp" component={SignUpScreen} />
         <Stack.Screen name="ExploreIdioms" component={ExploreIdiomsScreen} />
         <Stack.Screen name="AddNewIdiom" component={AddNewIdiomScreen} />
+        <Stack.Screen name="Inicio" component={PaginaInicio} />
+        <Stack.Screen name="IdiomDetails" component={IdiomDetailsScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
