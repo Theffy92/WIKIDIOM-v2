@@ -31,7 +31,7 @@ const SignUpScreen = () => {
   }
 
   return (
-    <KeyboardAvoidingView style={styles.container} >
+    <KeyboardAvoidingView style={styles.container}>
       <ScrollView contentContainerStyle={styles.scrollContainer}>
         <View style={styles.inputContainer}>
           <TextInput
@@ -101,7 +101,8 @@ const styles = StyleSheet.create({
   scrollContainer: {
     flexGrow: 1,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    width:'80%'
   },
   inputContainer: {
     width: '80%',
@@ -120,7 +121,7 @@ const styles = StyleSheet.create({
     marginTop: 40,
   },
   button: {
-    backgroundColor: '#0782F9',
+    backgroundColor: '#3319A5CB',
     width: '100%',
     padding: 15,
     borderRadius: 10,
@@ -129,7 +130,7 @@ const styles = StyleSheet.create({
   buttonOutline: {
     backgroundColor: 'white',
     marginTop: 5,
-    borderColor: '#0782F9',
+    borderColor: '#3319A5CB',
     borderWidth: 2,
   },
   buttonText: {
@@ -138,7 +139,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   buttonOutlineText: {
-    color: '#0782F9',
+    color: '#3319A5CB',
     fontWeight: '700',
     fontSize: 16,
   },
