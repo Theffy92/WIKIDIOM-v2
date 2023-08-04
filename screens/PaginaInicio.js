@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 
-const HomeScreen = ({ navigation }) => {
+const PaginaInicio = ({ navigation }) => {
   const handleContinueAsGuest = () => {
     // Handle logic for "Continue as a guest" button
   };
@@ -20,8 +20,8 @@ const HomeScreen = ({ navigation }) => {
       <LinearGradient colors={['#09203F', '#3b5998', '#1EAE98']} style={{flex:1}}>
         <View style={styles.container}>
           <View style={styles.titleContainer}>
-            <Text style={styles.title}>What is an idiom?</Text>
-            <Text style={styles.subtitle}>An idiom is a common expression that may not make sense when translated word for word so we have to "make it make sense". They often convey a specific idea or convey an abstract concept in a more concise or vivid way. We use idioms in our everyday language without even realizing it. For instance, the phrase "Hold your horses" means to slow down or be patient, even though it has nothing to do with actually holding horses.</Text>
+            <Text style={styles.title}>¿Qué es un idiom?</Text>
+            <Text style={styles.subtitle}>Un modismo es una expresión común que puede no tener sentido cuando se traduce palabra por palabra, por lo que debemos "hacer que tenga sentido". A menudo transmiten una idea específica o transmiten un concepto abstracto de una manera más concisa o vívida. Usamos modismos en nuestro lenguaje cotidiano sin siquiera darnos cuenta. Por ejemplo, la frase "por si las moscas" significa por si acaso.</Text>
           </View>
           <TouchableOpacity style={styles.button} onPress={handleContinueAsGuest}>
             <Text style={styles.buttonText}>Continue as a guest</Text>
@@ -78,4 +78,5 @@ const styles = StyleSheet.create({
   }
 });
 
-export default HomeScreen;
+
+export default PaginaInicio;
