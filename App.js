@@ -8,6 +8,8 @@ import HomeScreen from './screens/HomeScreen';
 import WelcomeScreen from './screens/WelcomeScreen';
 import AddNewIdiomScreen from './screens/AddNewIdiomsScreen';
 import ExploreIdiomsScreen from './screens/ExploreIdiomsScreen';
+
+import PaginaInicio from './screens/PaginaInicio';
 import HomeUserScreen from './screens/HomeUserScreen';
 import IdiomDetailsScreen from './screens/IdiomDetailsScreen';
 
@@ -24,7 +26,6 @@ export default function App() {
         <Stack.Screen name="SignUp" component={SignUpScreen} />
         <Stack.Screen name="ExploreIdioms" component={ExploreIdiomsScreen} />
         <Stack.Screen name="AddNewIdiom" component={AddNewIdiomScreen} />
-        <Stack.Screen name="IdiomDetails" component={IdiomDetailsScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
