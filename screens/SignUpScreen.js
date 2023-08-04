@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigation } from '@react-navigation/core';
 import { KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, View, ScrollView } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
 import { auth } from '../config';
 
 const SignUpScreen = () => {
@@ -31,64 +32,67 @@ const SignUpScreen = () => {
   }
 
   return (
-    <KeyboardAvoidingView style={styles.container}>
-      <ScrollView contentContainerStyle={styles.scrollContainer}>
-        <View style={styles.inputContainer}>
-          <TextInput
-            placeholder='Name'
-            value={name}
-            onChangeText={text => setName(text)}
-            style={styles.input}
-          />
-          <TextInput
-            placeholder='Last Name'
-            value={lastName}
-            onChangeText={text => setLastName(text)}
-            style={styles.input}
-          />
-          <TextInput
-            placeholder='Email'
-            value={email}
-            onChangeText={text => setEmail(text)}
-            style={styles.input}
-          />
-          <TextInput
-            placeholder='Password'
-            value={password}
-            onChangeText={text => setPassword(text)}
-            style={styles.input}
-            secureTextEntry
-          />
-          <TextInput
-            placeholder='Confirm Password'
-            value={confirmPassword}
-            onChangeText={text => setConfirmPassword(text)}
-            style={styles.input}
-            secureTextEntry
-          />
-          <TextInput
-            placeholder='Date of Birth(MM-DD-YYYY)'
-            value={dateOfBirth}
-            onChangeText={text => setDateOfBirth(text)}
-            style={styles.input}
-          />
-        </View>
-        <View style={styles.buttonContainer}>
-          <TouchableOpacity
-            onPress={handleSignUp}
-            style={styles.button}
-          >
-            <Text style={styles.buttonText}>Register</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => navigation.navigate('Login')}
-            style={[styles.button, styles.buttonOutline]}
-          >
-            <Text style={styles.buttonOutlineText}>I already have an account</Text>
-          </TouchableOpacity>
-        </View>
-      </ScrollView>
-    </KeyboardAvoidingView>
+    <LinearGradient colors={['#16355D', '#405990D3', '#31C7B1D0']} style={{flex:1}}>
+      <KeyboardAvoidingView style={styles.container}>
+        <ScrollView contentContainerStyle={styles.scrollContainer}>
+          <View style={styles.inputContainer}>
+            <TextInput
+              placeholder='Name'
+              value={name}
+              onChangeText={text => setName(text)}
+              style={styles.input}
+            />
+            <TextInput
+              placeholder='Last Name'
+              value={lastName}
+              onChangeText={text => setLastName(text)}
+              style={styles.input}
+            />
+            <TextInput
+              placeholder='Email'
+              value={email}
+              onChangeText={text => setEmail(text)}
+              style={styles.input}
+            />
+            <TextInput
+              placeholder='Password'
+              value={password}
+              onChangeText={text => setPassword(text)}
+              style={styles.input}
+              secureTextEntry
+            />
+            <TextInput
+              placeholder='Confirm Password'
+              value={confirmPassword}
+              onChangeText={text => setConfirmPassword(text)}
+              style={styles.input}
+              secureTextEntry
+            />
+            <TextInput
+              placeholder='Date of Birth(MM-DD-YYYY)'
+              value={dateOfBirth}
+              onChangeText={text => setDateOfBirth(text)}
+              style={styles.input}
+            />
+          </View>
+          <View style={styles.buttonContainer}>
+            <TouchableOpacity
+              onPress={handleSignUp}
+              style={styles.button}
+            >
+              <Text style={styles.buttonText}>Register</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => navigation.navigate('Login')}
+              style={[styles.button, styles.buttonOutline]}
+            >
+              <Text style={styles.buttonOutlineText}>I already have an account</Text>
+            </TouchableOpacity>
+          </View>
+        </ScrollView>
+        
+      </KeyboardAvoidingView>
+    </LinearGradient>
   )
 }
 

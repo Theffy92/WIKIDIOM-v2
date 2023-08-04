@@ -1,4 +1,5 @@
 import { StyleSheet, Text, View, TextInput, FlatList, TouchableOpacity } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
 import React, { useState, useEffect } from 'react';
 import { firebase } from '../config';
 
@@ -39,19 +40,24 @@ const ExploreIdiomsScreen = ({ navigation }) => {
   );
 
   return (
-    <View style={styles.container}>
-      <TextInput
-        style={styles.searchInput}
-        placeholder="Search idioms by language, keyword..."
-        value={searchQuery}
-        onChangeText={handleSearch}
-      />
-      <FlatList
-        data={filteredIdioms}
-        renderItem={renderIdiomItem}
-        keyExtractor={item => item.idiom}
-        contentContainerStyle={styles.listContainer}
-      />
+    <View style={{flex:1}}>
+      <LinearGradient colors={['#16355D', '#405990D3', '#31C7B1D0']} style={{flex:1}}>
+        <View style={styles.container}>
+          <TextInput
+            style={[styles.searchInput, {color:'white'}]}
+            placeholder="Search idioms by language, keyword..."
+            placeholderTextColor="white"
+            value={searchQuery}
+            onChangeText={handleSearch}
+          />
+          <FlatList
+            data={filteredIdioms}
+            renderItem={renderIdiomItem}
+            keyExtractor={item => item.idiom}
+            contentContainerStyle={styles.listContainer}
+          />
+        </View>
+      </LinearGradient>
     </View>
   );
 };
@@ -76,10 +82,12 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     marginBottom: 5,
+    color: 'white',
   },
   idiomMeaning: {
     fontSize: 16,
     marginBottom: 10,
+    color: 'white',
   },
 });
 

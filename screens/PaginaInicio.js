@@ -20,17 +20,17 @@ const PaginaInicio = ({ navigation }) => {
       <LinearGradient colors={['#09203F', '#3b5998', '#1EAE98']} style={{flex:1}}>
         <View style={styles.container}>
           <View style={styles.titleContainer}>
-            <Text style={styles.title}>¿Qué es un idiom?</Text>
+            <Text style={styles.title}>¿Qué es un modismo?</Text>
             <Text style={styles.subtitle}>Un modismo es una expresión común que puede no tener sentido cuando se traduce palabra por palabra, por lo que debemos "hacer que tenga sentido". A menudo transmiten una idea específica o transmiten un concepto abstracto de una manera más concisa o vívida. Usamos modismos en nuestro lenguaje cotidiano sin siquiera darnos cuenta. Por ejemplo, la frase "por si las moscas" significa por si acaso.</Text>
           </View>
           <TouchableOpacity style={styles.button} onPress={handleContinueAsGuest}>
-            <Text style={styles.buttonText}>Continue as a guest</Text>
+            <Text style={styles.buttonText}>Continuar como visitante</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.button} onPress={handleLogin}>
-            <Text style={styles.buttonText}>Login</Text>
+            <Text style={styles.buttonText}>Inicia sesión</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.button} onPress={handleRegister}>
-            <Text style={styles.buttonText}>Register</Text>
+            <Text style={styles.buttonText}>Registrate</Text>
           </TouchableOpacity>
         </View>
       </LinearGradient>
