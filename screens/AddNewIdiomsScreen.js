@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, ScrollView } from 'react-native';
 import React, { useState } from 'react';
 import { firebase } from '../config';
-import { Picker } from '@react-native-picker/picker';
+import ModalSelector from 'react-native-modal-selector';
 
 const AddNewIdiomsScreen = () => {
   const [mainLanguage, setMainLanguage] = useState('');
@@ -36,9 +36,6 @@ const AddNewIdiomsScreen = () => {
         createdAt: firebase.firestore.FieldValue.serverTimestamp(),
       };
 
-      // if (countryVariations.length > 0) {
-      //   docData.countryVariations = countryVariations;
-      // }
       if (countryVariations.length > 0) {
         const countryVariationsData = {};
         countryVariations.forEach((variation) => {
@@ -146,34 +143,58 @@ const AddNewIdiomsScreen = () => {
       </TouchableOpacity>
       {showCountryVariations && (
         <View>
-          <Picker
-            selectedValue={selectedLanguage}
-            onValueChange={(itemValue) => setSelectedLanguage(itemValue)}
+          <ModalSelector
+            data={[
+              { key: 0, label: 'Select Language' },
+              { key: 1, label: 'English' },
+              { key: 2, label: 'Spanish' },
+            ]}
+            initValue="Select Language"
+            onChange={(option) => setSelectedLanguage(option.label)}
           >
-            <Picker.Item label="Select Language" value="" />
-            <Picker.Item label="English" value="English" />
-            <Picker.Item label="Spanish" value="Spanish" />
-          </Picker>
+            <TextInput
+              style={styles.input}
+              placeholder="Select Language *"
+              value={selectedLanguage}
+              editable={false}
+            />
+          </ModalSelector>
           {selectedLanguage === 'English' && (
-            <Picker
-              selectedValue={selectedCountry}
-              onValueChange={(itemValue) => setSelectedCountry(itemValue)}
+            <ModalSelector
+              data={[
+                { key: 0, label: 'Select Country' },
+                { key: 1, label: 'USA' },
+                { key: 2, label: 'England' },
+              ]}
+              initValue="Select Country"
+              onChange={(option) => setSelectedCountry(option.label)}
             >
-              <Picker.Item label="Select Country" value="" />
-              <Picker.Item label="USA" value="USA" />
-              <Picker.Item label="England" value="England" />
-            </Picker>
+              <TextInput
+                style={styles.input}
+                placeholder="Select Country *"
+                value={selectedCountry}
+                editable={false}
+              />
+            </ModalSelector>
           )}
           {selectedLanguage === 'Spanish' && (
-            <Picker
-              selectedValue={selectedCountry}
-              onValueChange={(itemValue) => setSelectedCountry(itemValue)}
+            <ModalSelector
+              data={[
+                { key: 0, label: 'Select Country' },
+                { key: 1, label: 'Argentina' },
+                { key: 2, label: 'Mexico' },
+                { key: 3, label: 'Spain' },
+              ]}
+              initValue="Select Country"
+              onChange={(option) => setSelectedCountry(option.label)}
             >
-              <Picker.Item label="Select Country" value="" />
-              <Picker.Item label="Argentina" value="Argentina" />
-              <Picker.Item label="Mexico" value="Mexico" />
-              <Picker.Item label="Spain" value="Spain" />
-            </Picker>
+              <TextInput
+                style={styles.input}
+                placeholder="Select Country *"
+                value={selectedCountry}
+                editable={false}
+              />
+            </ModalSelector>
           )}
           <TouchableOpacity style={styles.button} onPress={handleAddCountryVariation}>
             <Text style={styles.buttonText}>Add Country Variation</Text>
@@ -181,29 +202,9 @@ const AddNewIdiomsScreen = () => {
           {countryVariations.map((variation, index) => (
             <View key={index}>
               <Text style={styles.subTitle}>Country Variation {index + 1}</Text>
-              <Text style={styles.label}>Country:</Text>
-              <TextInput
-                style={styles.input}
-                placeholder="Country *"
-                value={variation.country}
-                onChangeText={(value) => {
-                  const updatedVariations = [...countryVariations];
-                  updatedVariations[index].country = value;
-                  setCountryVariations(updatedVariations);
-                }}
-              />
-              <Text style={styles.label}>Language:</Text>
-              <TextInput
-                style={styles.input}
-                placeholder="Language *"
-                value={variation.language}
-                onChangeText={(value) => {
-                  const updatedVariations = [...countryVariations];
-                  updatedVariations[index].language = value;
-                  setCountryVariations(updatedVariations);
-                }}
-              />
-              <Text style={styles.label}>Variation:</Text>
+              <Text style={styles.label}>Country:{variation.country}</Text>
+              <Text style={styles.label}>Language:{variation.language}</Text>
+              <Text style={styles.label}>Idiom Variation:</Text>
               <TextInput
                 style={styles.input}
                 placeholder="Variation *"
