@@ -29,7 +29,7 @@ const SignUpScreen = () => {
         alert("Account created successfully!");
 
         // Navigate to the Login screen after successful registration
-        navigation.navigate('Login');
+        navigation.navigate('HomeUser');
       })
       .catch(error => alert(error.message))
   }
