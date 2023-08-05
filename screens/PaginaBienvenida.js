@@ -5,7 +5,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 
 const WelcomeScreen = ({ navigation }) => {
   const handleStartButtonPress = () => {
-    navigation.navigate('Home'); // Navigate to the LoginScreen when Start button is pressed
+    navigation.navigate('Inicio'); // Navigate to the LoginScreen when Start button is pressed
   };
 
   const handleSpanishButtonPress = () => {
@@ -27,9 +27,9 @@ const WelcomeScreen = ({ navigation }) => {
             marginRight: 10,
             marginTop: 40,
           }}/>
-          <Text style={styles.title}>Welcome to WikIDIOM!</Text>
+          <Text style={styles.title}>Bienvenido a WikIDIOM!</Text>
           <TouchableOpacity style={styles.button} onPress={handleStartButtonPress}>
-            <Text style={styles.buttonText}>Start</Text>
+            <Text style={styles.buttonText}>Iniciar</Text>
           </TouchableOpacity>
           <View style={styles.buttonContainer}>
             <View style={styles.bottomButtons}>
