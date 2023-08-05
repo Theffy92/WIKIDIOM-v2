@@ -25,8 +25,11 @@ const SignUpScreen = () => {
       .then(userCredentials => {
         const user = userCredentials.user;
         console.log('Registered with: ', user.email);
-        // Navigate to the Home screen after successful registration
-        navigation.navigate('Home');
+
+        alert("Account created successfully!");
+
+        // Navigate to the Login screen after successful registration
+        navigation.navigate('HomeUser');
       })
       .catch(error => alert(error.message))
   }
