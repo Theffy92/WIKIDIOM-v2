@@ -13,6 +13,7 @@ import PaginaInicio from './screens/PaginaInicio';
 import PaginaBienvenida from './screens/PaginaBienvenida';
 import HomeUserScreen from './screens/HomeUserScreen';
 import IdiomDetailsScreen from './screens/IdiomDetailsScreen';
+import ExploraModismos from './screens/ExploraModismos';
 
 const Stack = createNativeStackNavigator();
 
@@ -30,6 +31,7 @@ export default function App() {
         <Stack.Screen name="Bienvenida" component={PaginaBienvenida} options={{ headerShown: false }}/>
         <Stack.Screen name="Inicio" component={PaginaInicio} />
         <Stack.Screen name="IdiomDetails" component={IdiomDetailsScreen} />
+        <Stack.Screen name="Explora" component={ExploraModismos} />
       </Stack.Navigator>
     </NavigationContainer>
   );

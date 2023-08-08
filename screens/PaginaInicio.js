@@ -4,7 +4,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 
 const PaginaInicio = ({ navigation }) => {
   const handleContinueAsGuest = () => {
-    // Handle logic for "Continue as a guest" button
+    navigation.navigate('Explora');// Handle logic for "Continue as a guest" button
   };
 
   const handleLogin = () => {
