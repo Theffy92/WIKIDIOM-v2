@@ -47,37 +47,6 @@ const ExploraModismos = ({ navigation }) => {
     filterIdioms(text, languageFilter, countryFilter, orderFilter);
   };
 
-
-  const handleLanguageFilter = (language) => {
-    setLanguageFilter(language);
-  
-    // Get the filtered country options based on the selected language
-    const filteredOptions = getFilteredCountryOptions(language);
-    setFilteredCountryOptions(filteredOptions);
-
-    // Reset the country filter when changing the language filter
-    setCountryFilter('');
-  
-    // Apply filters on idioms (language and country)
-    filterIdioms(language, countryFilter, orderFilter, searchQuery);
-  };
-  
-  const handleCountryFilter = (country) => {
-    setCountryFilter(country);
-  
-    // Get the filtered country options based on the selected language
-    const filteredOptions = getFilteredCountryOptions(languageFilter, countryOptions);
-    setFilteredCountryOptions(filteredOptions);
-  
-    // Apply filters on idioms (language and country)
-    filterIdioms(languageFilter, country, orderFilter, searchQuery);
-  };
-
-  const handleOrderFilter = (order) => {
-    setOrderFilter(order);
-    filterIdioms(languageFilter, countryFilter, order, searchQuery);
-  };
-
   const filterIdioms = (language, country, order, searchText) => {
     let filtered = idiomsData;
   
@@ -124,27 +93,7 @@ const ExploraModismos = ({ navigation }) => {
     // Reset the filtered idioms to the original data
     filterIdioms('', '', '', '');
   };
-  
-  const getFilteredCountryOptions = (selectedLanguage, allCountryOptions) => {
-    if (selectedLanguage) {
-      // If a language is selected, return only the main countries where that language is spoken
-      const mainCountries = idiomsData
-        .filter(
-          (idiom) =>
-            idiom.language.toLowerCase() === selectedLanguage.toLowerCase() &&
-            !idiom.countryVariations
-        )
-        .map((idiom) => idiom.country.toLowerCase());
-  
-      // Filter the country options to include only the main countries for the selected language
-      return allCountryOptions.filter((country) => mainCountries.includes(country.toLowerCase()));
-    }
-  
-    // If no language is selected, return all country options
-    return allCountryOptions;
-  };
-  
-
+    
   const renderIdiomItem = ({ item }) => (
     <TouchableOpacity onPress={() => navigation.navigate('Modismos', { idiom: item })}>
       <Text style={styles.idiomTitle}>{item.idiom}</Text>
@@ -155,6 +104,12 @@ const ExploraModismos = ({ navigation }) => {
   const languageOptions = ['English', 'Spanish'];
 
   const orderOptions = ['asc', 'desc'];
+
+  const translations = {
+    england: 'Inglaterra',
+    spain: 'España',
+    usa: 'Estados Unidos',
+  };
 
   return (
     <View style={{ flex: 1 }}>
@@ -191,6 +146,25 @@ const ExploraModismos = ({ navigation }) => {
                     style={[styles.modalOption, languageFilter === option ? styles.selectedOption : null]}
                     onPress={() => {
                       setLanguageFilter(option);
+                      const mainCountries = idiomsData
+                      .filter(
+                        (idiom) =>
+                          idiom.language.toLowerCase() === option.toLowerCase() &&
+                          !idiom.countryVariations
+                      )
+                      .map((idiom) => {
+                        const lowerCaseCountry = idiom.country.toLowerCase();
+                        // Check if the country needs to be translated
+                        if (translations[lowerCaseCountry]) {
+                          return translations[lowerCaseCountry]; // Use the translated country name
+                        }
+                        return lowerCaseCountry; // Use the original country name
+                      });
+                      // Update the filteredCountryOptions based on the main countries
+                      // Create a Set to store unique country names
+                      const uniqueCountrySet = new Set(mainCountries);
+                      // Convert the Set back to an array to update filteredCountryOptions
+                      setFilteredCountryOptions(Array.from(uniqueCountrySet));
                       setIsLanguageModalVisible(false);
                       filterIdioms(option, countryFilter, orderFilter, searchQuery);
                     }}
@@ -206,38 +180,41 @@ const ExploraModismos = ({ navigation }) => {
           
           {/* Filter by Country */}
           <View style={styles.filtersContainer}>
-            <TouchableOpacity onPress={() => setIsCountryModalVisible(true)}>
-              <Text style={styles.filterButtonText}>Filtrar por país</Text>
-            </TouchableOpacity>
-            <Modal
-              animationType="slide"
-              transparent={true}
-              visible={isCountryModalVisible}
-              onRequestClose={() => setIsCountryModalVisible(false)}
-            >
-              <View style={styles.modalView}>
-                <View style={styles.modalHeader}>
-                  <TouchableOpacity onPress={()=> setIsCountryModalVisible(false)}>
-                        <Text style={styles.modalHeaderCloseText}>X</Text>
-                  </TouchableOpacity>
+              <TouchableOpacity onPress={() => setIsCountryModalVisible(true)}>
+                <Text style={styles.filterButtonText}>Filtrar por país</Text>
+              </TouchableOpacity>
+              <Modal
+                animationType="slide"
+                transparent={true}
+                visible={isCountryModalVisible}
+                onRequestClose={() => setIsCountryModalVisible(false)}
+              >
+                <View style={styles.modalView}>
+                  <View style={styles.modalHeader}>
+                    <TouchableOpacity onPress={() => setIsCountryModalVisible(false)}>
+                      <Text style={styles.modalHeaderCloseText}>X</Text>
+                    </TouchableOpacity>
+                  </View>
+                  {filteredCountryOptions.map((option) => {
+                    // Check if the country needs to be translated
+                    const translatedOption = translations[option.toLowerCase()] || option;
+
+                    return (
+                      <Pressable
+                        key={option}
+                        style={[styles.modalOption, countryFilter === option ? styles.selectedOption : null]}
+                        onPress={() => {
+                          setCountryFilter(option);
+                          setIsCountryModalVisible(false);
+                          filterIdioms(languageFilter, option, orderFilter, searchQuery);
+                        }}
+                      >
+                        <Text style={styles.modalOptionText}>{translatedOption}</Text>
+                      </Pressable>
+                    );
+                  })}
                 </View>
-                {/* <Text style={styles.modalTitle}>Filter by Country</Text> */}
-                {countryOptions.map((option) => (
-                  <Pressable
-                    key={option}
-                    style={[styles.modalOption, countryFilter === option ? styles.selectedOption : null]}
-                    onPress={() => {
-                      setCountryFilter(option);
-                      setIsCountryModalVisible(false);
-                      filterIdioms(languageFilter, option, orderFilter, searchQuery);
-                      
-                    }}
-                  >
-                    <Text style={styles.modalOptionText}>{option}</Text>
-                  </Pressable>
-                ))}
-              </View>
-            </Modal>
+              </Modal>
           </View>
 
           {/* Order by */}
