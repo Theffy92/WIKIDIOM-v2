@@ -8,7 +8,7 @@ const PaginaInicio = ({ navigation }) => {
   };
 
   const handleLogin = () => {
-    navigation.navigate('Login'); // Navigate to the LoginScreen
+    navigation.navigate('Acceso'); // Navigate to the LoginScreen
   };
 
   const handleRegister = () => {
