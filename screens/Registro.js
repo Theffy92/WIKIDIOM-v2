@@ -16,7 +16,7 @@ const Registro = () => {
 
   const handleSignUp = () => {
     if (password !== confirmPassword) {
-      alert("Passwords do not match!");
+      alert("Las contraseñas no coinciden!");
       return;
     }
 
@@ -24,12 +24,12 @@ const Registro = () => {
       .createUserWithEmailAndPassword(email, password)
       .then(userCredentials => {
         const user = userCredentials.user;
-        console.log('Registered with: ', user.email);
+        console.log('Registrado con: ', user.email);
 
-        alert("Account created successfully!");
+        alert("Cuenta creada exitosamente!");
 
         // Navigate to the Login screen after successful registration
-        navigation.navigate('HomeUser');
+        navigation.navigate('Usuario');
       })
       .catch(error => alert(error.message))
   }
@@ -72,7 +72,7 @@ const Registro = () => {
               secureTextEntry
             />
             <TextInput
-              placeholder='Fecha de nacimiento(mes-día-año)'
+              placeholder='Fecha de nacimiento (mes-día-año)'
               value={dateOfBirth}
               onChangeText={text => setDateOfBirth(text)}
               style={styles.input}

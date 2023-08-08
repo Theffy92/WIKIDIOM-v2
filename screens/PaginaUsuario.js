@@ -5,18 +5,18 @@ import {auth} from '../config';
 
 const PaginaUsuario = ({navigation}) => {
     const handleExploreIdioms = () => {
-        navigation.navigate('ExploreIdioms');
+        navigation.navigate('Explora');
     };
     
     const handleAddNewIdiom = () => {
-        navigation.navigate('AddNewIdiom');
+        navigation.navigate('Agregar');
     };
     const handleLogout = () => {
         auth
           .signOut()
           .then(() => {
-            console.log('Successfully logged out.');
-            navigation.reset({ index: 0, routes: [{ name: 'Welcome' }] }); // Reset the navigation stack to Welcome screen
+            console.log('Cerró sesión exitosamente.');
+            navigation.reset({ index: 0, routes: [{ name: 'Bienvenida' }] }); // Reset the navigation stack to Welcome screen
           })
           .catch(error => alert(error.message));
     };

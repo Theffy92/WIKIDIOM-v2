@@ -17,6 +17,7 @@ import ExploraModismos from './screens/ExploraModismos';
 import Acceso from './screens/Acceso';
 import Registro from './screens/Registro';
 import PaginaUsuario from './screens/PaginaUsuario';
+import AgregarModismo from './screens/AgregarModismo';
 
 const Stack = createNativeStackNavigator();
 
@@ -32,13 +33,13 @@ export default function App() {
         <Stack.Screen name="HomeUser" component={HomeUserScreen} options={{ headerShown: false }} />
         <Stack.Screen name="AddNewIdiom" component={AddNewIdiomScreen} />
         <Stack.Screen name="IdiomDetails" component={IdiomDetailsScreen} />
-        
         <Stack.Screen name="Bienvenida" component={PaginaBienvenida} options={{ headerShown: false }}/>
         <Stack.Screen name="Inicio" component={PaginaInicio} />
         <Stack.Screen name="Acceso" component={Acceso} />
         <Stack.Screen name="Registro" component={Registro} />
         <Stack.Screen name="Explora" component={ExploraModismos} />
         <Stack.Screen name="Usuario" component={PaginaUsuario} options={{ headerShown: false }} />
+        <Stack.Screen name="Agregar" component={AgregarModismo} />
       </Stack.Navigator>
     </NavigationContainer>
   );
