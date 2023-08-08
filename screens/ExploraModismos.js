@@ -13,6 +13,8 @@ const ExploraModismos = ({ navigation }) => {
   const [isLanguageModalVisible, setIsLanguageModalVisible] = useState(false);
   const [isCountryModalVisible, setIsCountryModalVisible] = useState(false);
   const [isOrderModalVisible, setIsOrderModalVisible] = useState(false);
+  const [countryOptions, setCountryOptions] = useState([]);
+  const [filteredCountryOptions, setFilteredCountryOptions] = useState([]);
 
 
   useEffect(() => {
@@ -31,6 +33,10 @@ const ExploraModismos = ({ navigation }) => {
       const idiomsData = querySnapshot.docs.map((doc) => doc.data());
       setIdiomsData(idiomsData);
       setFilteredIdioms(idiomsData);
+      // Extract the unique country names from idiomsData and update countryOptions
+      const uniqueCountries = [...new Set(idiomsData.map((idiom) => idiom.country))];
+      setCountryOptions(uniqueCountries);
+      setFilteredCountryOptions(uniqueCountries);
     } catch (error) {
       console.error('Error fetching idioms:', error);
     }
@@ -41,13 +47,29 @@ const ExploraModismos = ({ navigation }) => {
     filterIdioms(text, languageFilter, countryFilter, orderFilter);
   };
 
+
   const handleLanguageFilter = (language) => {
     setLanguageFilter(language);
+  
+    // Get the filtered country options based on the selected language
+    const filteredOptions = getFilteredCountryOptions(language);
+    setFilteredCountryOptions(filteredOptions);
+
+    // Reset the country filter when changing the language filter
+    setCountryFilter('');
+  
+    // Apply filters on idioms (language and country)
     filterIdioms(language, countryFilter, orderFilter, searchQuery);
   };
-
+  
   const handleCountryFilter = (country) => {
     setCountryFilter(country);
+  
+    // Get the filtered country options based on the selected language
+    const filteredOptions = getFilteredCountryOptions(languageFilter, countryOptions);
+    setFilteredCountryOptions(filteredOptions);
+  
+    // Apply filters on idioms (language and country)
     filterIdioms(languageFilter, country, orderFilter, searchQuery);
   };
 
@@ -58,27 +80,27 @@ const ExploraModismos = ({ navigation }) => {
 
   const filterIdioms = (language, country, order, searchText) => {
     let filtered = idiomsData;
-
+  
     if (language) {
       filtered = filtered.filter((idiom) => idiom.language.toLowerCase() === language.toLowerCase());
     }
-
+  
     if (country) {
       filtered = filtered.filter((idiom) => idiom.country.toLowerCase() === country.toLowerCase());
     }
-
+  
     if (order === 'asc') {
       filtered = filtered.sort((a, b) => a.idiom.localeCompare(b.idiom));
     } else if (order === 'desc') {
       filtered = filtered.sort((a, b) => b.idiom.localeCompare(a.idiom));
     }
-
+  
     if (searchText) {
       filtered = filtered.filter((idiom) => {
         const mainLanguage = idiom.language.toLowerCase();
         const mainCountry = idiom.country.toLowerCase();
         const idiomKeywords = idiom.idiom.toLowerCase();
-
+  
         return (
           mainLanguage.includes(searchText.toLowerCase()) ||
           mainCountry.includes(searchText.toLowerCase()) ||
@@ -86,16 +108,43 @@ const ExploraModismos = ({ navigation }) => {
         );
       });
     }
-
+    
     setFilteredIdioms(filtered);
   };
-  // Add a function to reset all filters
+
   const handleResetFilters = () => {
     setLanguageFilter('');
     setCountryFilter('');
     setOrderFilter('');
     setSearchQuery('');
+  
+    // Reset the country options to show all options
+    setFilteredCountryOptions([...countryOptions]);
+  
+    // Reset the filtered idioms to the original data
+    filterIdioms('', '', '', '');
   };
+  
+  const getFilteredCountryOptions = (selectedLanguage, allCountryOptions) => {
+    if (selectedLanguage) {
+      // If a language is selected, return only the main countries where that language is spoken
+      const mainCountries = idiomsData
+        .filter(
+          (idiom) =>
+            idiom.language.toLowerCase() === selectedLanguage.toLowerCase() &&
+            !idiom.countryVariations
+        )
+        .map((idiom) => idiom.country.toLowerCase());
+  
+      // Filter the country options to include only the main countries for the selected language
+      return allCountryOptions.filter((country) => mainCountries.includes(country.toLowerCase()));
+    }
+  
+    // If no language is selected, return all country options
+    return allCountryOptions;
+  };
+  
+
   const renderIdiomItem = ({ item }) => (
     <TouchableOpacity onPress={() => navigation.navigate('IdiomDetails', { idiom: item })}>
       <Text style={styles.idiomTitle}>{item.idiom}</Text>
@@ -103,8 +152,8 @@ const ExploraModismos = ({ navigation }) => {
     </TouchableOpacity>
   );
 
-  const languageOptions = ['Inglés', 'Español'];
-  const countryOptions = ['Inglaterra', 'EUA', 'Argentina', 'México', 'España'];
+  const languageOptions = ['English', 'Spanish'];
+
   const orderOptions = ['asc', 'desc'];
 
   return (
@@ -113,7 +162,7 @@ const ExploraModismos = ({ navigation }) => {
         <View style={styles.container}>
           <TextInput
             style={[styles.searchInput, { color: 'white' }]}
-            placeholder="Buscar modismos por idioma o palabra clave"
+            placeholder="Buscar modismos por idioma o palabra clave."
             placeholderTextColor="white"
             value={searchQuery}
             onChangeText={handleSearch}
@@ -130,7 +179,12 @@ const ExploraModismos = ({ navigation }) => {
               onRequestClose={() => setIsLanguageModalVisible(false)}
             >
               <View style={styles.modalView}>
-                <Text style={styles.modalTitle}>Filtrar por idioma</Text>
+                <View style={styles.modalHeader}>
+                  <TouchableOpacity onPress={()=> setIsLanguageModalVisible(false)}>
+                        <Text style={styles.modalHeaderCloseText}>X</Text>
+                  </TouchableOpacity>
+                  {/* <Text style={styles.modalTitle}>Filter by Language</Text> */}
+                </View>
                 {languageOptions.map((option) => (
                   <Pressable
                     key={option}
@@ -141,7 +195,9 @@ const ExploraModismos = ({ navigation }) => {
                       filterIdioms(option, countryFilter, orderFilter, searchQuery);
                     }}
                   >
-                    <Text style={styles.modalOptionText}>{option}</Text>
+                    <Text style={styles.modalOptionText}>
+                      {option === 'English' ? 'Inglés' : 'Español'}
+                    </Text>
                   </Pressable>
                 ))}
               </View>
@@ -160,7 +216,12 @@ const ExploraModismos = ({ navigation }) => {
               onRequestClose={() => setIsCountryModalVisible(false)}
             >
               <View style={styles.modalView}>
-                <Text style={styles.modalTitle}>Filtrar por país</Text>
+                <View style={styles.modalHeader}>
+                  <TouchableOpacity onPress={()=> setIsCountryModalVisible(false)}>
+                        <Text style={styles.modalHeaderCloseText}>X</Text>
+                  </TouchableOpacity>
+                </View>
+                {/* <Text style={styles.modalTitle}>Filter by Country</Text> */}
                 {countryOptions.map((option) => (
                   <Pressable
                     key={option}
@@ -169,6 +230,7 @@ const ExploraModismos = ({ navigation }) => {
                       setCountryFilter(option);
                       setIsCountryModalVisible(false);
                       filterIdioms(languageFilter, option, orderFilter, searchQuery);
+                      
                     }}
                   >
                     <Text style={styles.modalOptionText}>{option}</Text>
@@ -190,7 +252,12 @@ const ExploraModismos = ({ navigation }) => {
               onRequestClose={() => setIsOrderModalVisible(false)}
             >
               <View style={styles.modalView}>
-                <Text style={styles.modalTitle}>Ordenar por</Text>
+                <View style={styles.modalHeader}>
+                  <TouchableOpacity onPress={()=> setIsOrderModalVisible(false)}>
+                        <Text style={styles.modalHeaderCloseText}>X</Text>
+                  </TouchableOpacity>
+                  {/* <Text style={styles.modalTitle}>Order by</Text> */}
+                </View>
                 {orderOptions.map((option) => (
                   <Pressable
                     key={option}
@@ -292,10 +359,14 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 5,
   },
-  modalTitle: {
+  modalHeader: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start', 
+    width: '100%',
+  },
+  modalHeaderCloseText: {
+    color: 'red',
     fontSize: 18,
-    fontWeight: 'bold',
-    marginBottom: 15,
   },
   modalOption: {
     paddingVertical: 10,
