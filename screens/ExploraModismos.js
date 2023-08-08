@@ -152,14 +152,7 @@ const ExploraModismos = ({ navigation }) => {
                           idiom.language.toLowerCase() === option.toLowerCase() &&
                           !idiom.countryVariations
                       )
-                      .map((idiom) => {
-                        const lowerCaseCountry = idiom.country.toLowerCase();
-                        // Check if the country needs to be translated
-                        if (translations[lowerCaseCountry]) {
-                          return translations[lowerCaseCountry]; // Use the translated country name
-                        }
-                        return lowerCaseCountry; // Use the original country name
-                      });
+                      .map((idiom) => idiom.country.toLowerCase());
                       // Update the filteredCountryOptions based on the main countries
                       // Create a Set to store unique country names
                       const uniqueCountrySet = new Set(mainCountries);
