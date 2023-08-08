@@ -41,7 +41,7 @@ const Acceso = () => {
     <KeyboardAvoidingView style={styles.container} behavior="padding">
       <View style={styles.inputContainer}>
         <TextInput
-          placeholder='Correo'
+          placeholder='Correo electrónico'
           value={email}
           onChangeText={text => setEmail(text)}
           style={styles.input}
@@ -62,7 +62,7 @@ const Acceso = () => {
           <Text style={styles.buttonText}>Acceso</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          onPress={() => navigation.navigate('SignUp')}
+          onPress={() => navigation.navigate('Registro')}
           style={[styles.button, styles.buttonOutline]}
         >
           <Text style={styles.buttonOutlineText}>Registro</Text>
