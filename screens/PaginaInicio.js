@@ -4,15 +4,15 @@ import { LinearGradient } from 'expo-linear-gradient';
 
 const PaginaInicio = ({ navigation }) => {
   const handleContinueAsGuest = () => {
-    // Handle logic for "Continue as a guest" button
+    navigation.navigate('Explora');// Handle logic for "Continue as a guest" button
   };
 
   const handleLogin = () => {
-    navigation.navigate('Login'); // Navigate to the LoginScreen
+    navigation.navigate('Acceso'); // Navigate to the LoginScreen
   };
 
   const handleRegister = () => {
-    navigation.navigate('SignUp'); // Navigate to the SignUpScreen
+    navigation.navigate('Registro'); // Navigate to the SignUpScreen
   };
 
   return (
@@ -27,10 +27,10 @@ const PaginaInicio = ({ navigation }) => {
             <Text style={styles.buttonText}>Continuar como visitante</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.button} onPress={handleLogin}>
-            <Text style={styles.buttonText}>Inicia sesión</Text>
+            <Text style={styles.buttonText}>Iniciar sesión</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.button} onPress={handleRegister}>
-            <Text style={styles.buttonText}>Registrate</Text>
+            <Text style={styles.buttonText}>Registrarse</Text>
           </TouchableOpacity>
         </View>
       </LinearGradient>
