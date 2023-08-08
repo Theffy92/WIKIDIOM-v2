@@ -24,13 +24,13 @@ const PaginaInicio = ({ navigation }) => {
             <Text style={styles.subtitle}>Un modismo es una expresión común que puede no tener sentido cuando se traduce palabra por palabra, por lo que debemos "hacer que tenga sentido". A menudo transmiten una idea específica o transmiten un concepto abstracto de una manera más concisa o vívida. Usamos modismos en nuestro lenguaje cotidiano sin siquiera darnos cuenta. Por ejemplo, la frase "por si las moscas" significa por si acaso.</Text>
           </View>
           <TouchableOpacity style={styles.button} onPress={handleContinueAsGuest}>
-            <Text style={styles.buttonText}>Continuar como visitante</Text>
+            <Text style={styles.buttonText}>Continúa como visitante</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.button} onPress={handleLogin}>
-            <Text style={styles.buttonText}>Iniciar sesión</Text>
+            <Text style={styles.buttonText}>Inicia sesión</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.button} onPress={handleRegister}>
-            <Text style={styles.buttonText}>Registrarse</Text>
+            <Text style={styles.buttonText}>Regístrate</Text>
           </TouchableOpacity>
         </View>
       </LinearGradient>

@@ -24,14 +24,14 @@ const Acceso = () => {
     auth
       .signInWithEmailAndPassword(email, password)
       .then(() => {
-        console.log('Successfully logged in with: ', email);
+        console.log('Inició sesión con: ', email);
         // Check if user is logged in
         const user = auth.currentUser;
         if (user) {
-          navigation.navigate('HomeUser');
+          navigation.navigate('Usuario');
         } else {
           // User is not logged in (guest), navigate to Explore Idioms
-          navigation.navigate('ExploreIdioms');
+          navigation.navigate('Explora');
         }
       })
       .catch(error => alert(error.message));

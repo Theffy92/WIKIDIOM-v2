@@ -103,8 +103,8 @@ const ExploraModismos = ({ navigation }) => {
     </TouchableOpacity>
   );
 
-  const languageOptions = ['English', 'Spanish'];
-  const countryOptions = ['England', 'USA', 'Argentina', 'Mexico', 'Spain'];
+  const languageOptions = ['Inglés', 'Español'];
+  const countryOptions = ['Inglaterra', 'EUA', 'Argentina', 'México', 'España'];
   const orderOptions = ['asc', 'desc'];
 
   return (
@@ -113,7 +113,7 @@ const ExploraModismos = ({ navigation }) => {
         <View style={styles.container}>
           <TextInput
             style={[styles.searchInput, { color: 'white' }]}
-            placeholder="Busca modismos por idioma o palabra clave"
+            placeholder="Buscar modismos por idioma o palabra clave"
             placeholderTextColor="white"
             value={searchQuery}
             onChangeText={handleSearch}
