@@ -38,7 +38,7 @@ const ExploraModismos = ({ navigation }) => {
       setCountryOptions(uniqueCountries);
       setFilteredCountryOptions(uniqueCountries);
     } catch (error) {
-      console.error('Error fetching idioms:', error);
+      console.error('Error al obtener modismos:', error);
     }
   };
 
@@ -146,7 +146,7 @@ const ExploraModismos = ({ navigation }) => {
   
 
   const renderIdiomItem = ({ item }) => (
-    <TouchableOpacity onPress={() => navigation.navigate('IdiomDetails', { idiom: item })}>
+    <TouchableOpacity onPress={() => navigation.navigate('Modismos', { idiom: item })}>
       <Text style={styles.idiomTitle}>{item.idiom}</Text>
       {/* <Text style={styles.idiomMeaning}>{item.meaning}</Text> */}
     </TouchableOpacity>
@@ -280,7 +280,7 @@ const ExploraModismos = ({ navigation }) => {
           style={styles.resetFiltersButton}
           onPress={handleResetFilters}
         >
-          <Text style={styles.resetFiltersButtonText}>Restablecer Filtros</Text>
+          <Text style={styles.resetFiltersButtonText}>Restablecer filtros</Text>
         </TouchableOpacity>
           <FlatList
             data={filteredIdioms}

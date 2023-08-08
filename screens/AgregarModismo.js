@@ -21,7 +21,7 @@ const AgregarModismo = () => {
     try {
       // Check if required fields are empty before adding the idiom
       if (!mainLanguage || !mainCountry || !idiom || !meaning || !examples || !translatedMeaning || !examplesTranslation) {
-        alert('Por favor, rellene los campos obligatorios');
+        alert('Por favor, rellene los campos obligatorios.');
         return;
       }
 
