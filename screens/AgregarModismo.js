@@ -3,6 +3,19 @@ import React, { useState } from 'react';
 import { firebase } from '../config';
 import ModalSelector from 'react-native-modal-selector';
 
+const languageMapping = {
+  'Inglés': 'English',
+  'Español': 'Spanish',
+};
+
+const countryMapping = {
+  'EUA': 'United States',
+  'Inglaterra': 'England',
+  'Argentina': 'Argentina',
+  'México': 'Mexico',
+  'España': 'Spain',
+};
+
 const AgregarModismo = () => {
   const [mainLanguage, setMainLanguage] = useState('');
   const [mainCountry, setMainCountry] = useState('');
@@ -26,8 +39,8 @@ const AgregarModismo = () => {
       }
 
       const docData = {
-        language: mainLanguage,
-        country: mainCountry,
+        language: languageMapping[mainLanguage],
+        country: countryMapping[mainCountry],
         idiom,
         meaning,
         examples: examples.split('\n'),
@@ -39,12 +52,12 @@ const AgregarModismo = () => {
       if (countryVariations.length > 0) {
         const countryVariationsData = {};
         countryVariations.forEach((variation) => {
-          const language = variation.language;
+          const language = languageMapping[variation.language];
           if (!countryVariationsData[language]) {
             countryVariationsData[language] = [];
           }
           countryVariationsData[language].push({
-            country: variation.country,
+            country: countryMapping[variation.country],
             variation: variation.variation,
             examples: variation.examples.split('\n'),
           });
@@ -92,18 +105,59 @@ const AgregarModismo = () => {
   return (
     <ScrollView contentContainerStyle={styles.scrollContent}>
       <Text style={styles.title}>Agregar Modismo</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="Idioma principal *"
-        value={mainLanguage}
-        onChangeText={setMainLanguage}
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="País principal *"
-        value={mainCountry}
-        onChangeText={setMainCountry}
-      />
+      <ModalSelector
+          data={[
+            { key: 0, label: 'Selecciona idioma' },
+            { key: 1, label: 'Inglés' },
+            { key: 2, label: 'Español' },
+          ]}
+          initValue="Selecciona idioma"
+          onChange={(option) => setMainLanguage(option.label)}
+      >
+          <TextInput
+            style={styles.input}
+            placeholder="Selecciona idioma *"
+            value={mainLanguage}
+            editable={false}
+          />
+      </ModalSelector>
+      {mainLanguage === 'Inglés' && (
+        <ModalSelector
+          data={[
+            { key: 0, label: 'Selecciona país' },
+            { key: 1, label: 'EUA' },
+            { key: 2, label: 'Inglaterra' },
+          ]}
+          initValue="Selecciona país"
+          onChange={(option) => setMainCountry(option.label)}
+        >
+          <TextInput
+            style={styles.input}
+             placeholder="Selecciona país *"
+            value={mainCountry}
+            editable={false}
+          />
+        </ModalSelector>
+      )}
+      {mainLanguage === 'Español' && (
+        <ModalSelector
+          data={[
+                { key: 0, label: 'Selecciona país' },
+                { key: 1, label: 'Argentina' },
+                { key: 2, label: 'México' },
+                { key: 3, label: 'España' },
+              ]}
+              initValue="Selecciona país"
+              onChange={(option) => setMainCountry(option.label)}
+            >
+              <TextInput
+                style={styles.input}
+                placeholder="Selecciona país *"
+                value={mainCountry}
+                editable={false}
+              />
+            </ModalSelector>
+        )}
       <TextInput
         style={styles.input}
         placeholder="Modismo *"
@@ -154,7 +208,7 @@ const AgregarModismo = () => {
           >
             <TextInput
               style={styles.input}
-              placeholder="Selecciona idioma *"
+              placeholder="Selecciona idioma "
               value={selectedLanguage}
               editable={false}
             />

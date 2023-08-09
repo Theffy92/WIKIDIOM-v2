@@ -92,18 +92,58 @@ const AddNewIdiomsScreen = () => {
   return (
     <ScrollView contentContainerStyle={styles.scrollContent}>
       <Text style={styles.title}>Add New Idiom</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="Main Language *"
-        value={mainLanguage}
-        onChangeText={setMainLanguage}
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Main Country *"
-        value={mainCountry}
-        onChangeText={setMainCountry}
-      />
+      <ModalSelector
+          data={[
+            { key: 0, label: 'Select Language' },
+            { key: 1, label: 'English' },
+            { key: 2, label: 'Spanish' },
+          ]}
+          initValue="Select Language *"
+          onChange={(option) => setMainLanguage(option.label)}>
+          <TextInput
+            style={styles.input}
+            placeholder="Select Language *"
+            value={mainLanguage}
+            editable={false}
+          />
+      </ModalSelector>
+      {mainLanguage === 'English' && (
+            <ModalSelector
+              data={[
+                { key: 0, label: 'Select Country' },
+                { key: 1, label: 'USA' },
+                { key: 2, label: 'England' },
+              ]}
+              initValue="Select Country *"
+              onChange={(option) => setMainCountry(option.label)}
+            >
+              <TextInput
+                style={styles.input}
+                placeholder="Select Country *"
+                value={mainCountry}
+                editable={false}
+              />
+            </ModalSelector>
+          )}
+          {mainLanguage === 'Spanish' && (
+            <ModalSelector
+              data={[
+                { key: 0, label: 'Select Country' },
+                { key: 1, label: 'Argentina' },
+                { key: 2, label: 'Mexico' },
+                { key: 3, label: 'Spain' },
+              ]}
+              initValue="Select Country"
+              onChange={(option) => setMainCountry(option.label)}
+            >
+              <TextInput
+                style={styles.input}
+                placeholder="Select Country *"
+                value={mainCountry}
+                editable={false}
+              />
+            </ModalSelector>
+        )}
       <TextInput
         style={styles.input}
         placeholder="Idiom *"
@@ -154,7 +194,7 @@ const AddNewIdiomsScreen = () => {
           >
             <TextInput
               style={styles.input}
-              placeholder="Select Language *"
+              placeholder="Select Language "
               value={selectedLanguage}
               editable={false}
             />
