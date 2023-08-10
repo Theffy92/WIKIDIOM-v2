@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { AuthProvider } from './screens/AuthContext';
 import LoginScreen from './screens/LoginScreen';
 import SignUpScreen from './screens/SignUpScreen';
 import HomeScreen from './screens/HomeScreen';
@@ -24,28 +25,31 @@ const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Welcome" component={WelcomeScreen} options={{ headerShown: false }} />
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="Login" component={LoginScreen} />
-        <Stack.Screen name="SignUp" component={SignUpScreen} />
-        <Stack.Screen name="ExploreIdioms" component={ExploreIdiomsScreen} />
-        <Stack.Screen name="HomeUser" component={HomeUserScreen} options={{ headerShown: false }} />
-        <Stack.Screen name="AddNewIdiom" component={AddNewIdiomScreen} />
-        <Stack.Screen name="IdiomDetails" component={IdiomDetailsScreen} />
+    <AuthProvider>
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen name="Welcome" component={WelcomeScreen} options={{ headerShown: false }} />
+          <Stack.Screen name="Home" component={HomeScreen} />
+          <Stack.Screen name="Login" component={LoginScreen} />
+          <Stack.Screen name="SignUp" component={SignUpScreen} />
+          <Stack.Screen name="ExploreIdioms" component={ExploreIdiomsScreen} />
+          <Stack.Screen name="HomeUser" component={HomeUserScreen} options={{ headerShown: false }} />
+          <Stack.Screen name="AddNewIdiom" component={AddNewIdiomScreen} />
+          <Stack.Screen name="IdiomDetails" component={IdiomDetailsScreen} />
 
-        <Stack.Screen name="Bienvenida" component={PaginaBienvenida} options={{ headerShown: false }}/>
-        <Stack.Screen name="Inicio" component={PaginaInicio} />
-        <Stack.Screen name="Acceso" component={Acceso} />
-        <Stack.Screen name="Registro" component={Registro} />
-        <Stack.Screen name="Explora" component={ExploraModismos} />
-        <Stack.Screen name="Usuario" component={PaginaUsuario} options={{ headerShown: false }} />
-        <Stack.Screen name="Agregar" component={AgregarModismo} />
-        <Stack.Screen name="Modismos" component={ModismosDetalles} />
+          <Stack.Screen name="Bienvenida" component={PaginaBienvenida} options={{ headerShown: false }}/>
+          <Stack.Screen name="Inicio" component={PaginaInicio} />
+          <Stack.Screen name="Acceso" component={Acceso} />
+          <Stack.Screen name="Registro" component={Registro} />
+          <Stack.Screen name="Explora" component={ExploraModismos} />
+          <Stack.Screen name="Usuario" component={PaginaUsuario} options={{ headerShown: false }} />
+          <Stack.Screen name="Agregar" component={AgregarModismo} />
+          <Stack.Screen name="Modismos" component={ModismosDetalles} />
 
-      </Stack.Navigator>
-    </NavigationContainer>
+        </Stack.Navigator>
+      </NavigationContainer>
+    </AuthProvider>
+
   );
 }
 
