@@ -9,7 +9,7 @@ const languageMapping = {
 };
 
 const countryMapping = {
-  'EUA': 'United States',
+  'EUA': 'USA',
   'Inglaterra': 'England',
   'Argentina': 'Argentina',
   'México': 'Mexico',
