@@ -23,10 +23,7 @@ const ExploreIdiomsScreen = ({ navigation }) => {
   
   useEffect(() => {
     filterIdioms(languageFilter, countryFilter, orderFilter, searchQuery);
-    console.log("Language Filter:", languageFilter);
-    console.log("Country Filter:", countryFilter);
-    console.log("Filtered Country Options:", filteredCountryOptions);
-  }, [languageFilter, countryFilter, filteredCountryOptions]);
+  }, [languageFilter, countryFilter, orderFilter, searchQuery]);
 
   const fetchIdioms = async () => {
     try {

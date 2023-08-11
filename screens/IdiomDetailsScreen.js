@@ -2,7 +2,6 @@ import { StyleSheet, Text, View, TouchableOpacity, TextInput, ScrollView, Keyboa
 import React, {useState} from 'react';
 import { useAuth } from './AuthContext';
 import { firebase } from '../config';
-import { Picker } from '@react-native-picker/picker';
 import ModalSelector from 'react-native-modal-selector';
 
 const IdiomDetailsScreen = ({ route }) => {
@@ -14,10 +13,19 @@ const IdiomDetailsScreen = ({ route }) => {
   const [newVariation, setNewVariation] = useState('');
   const [newLanguage, setNewLanguage] = useState('');
   const [newExamples, setNewExamples] = useState('');
+  const [showCountryVariations, setShowCountryVariations] = useState(false);
+
+  const handleShowCountryVariations = () => {
+    setShowCountryVariations((prevShowCountryVariations) => !prevShowCountryVariations);
+  };
+
+  const handleShowAddCountryVariation = () => {
+    setShowAddVariationForm((prevShowAddVariationForm) => !prevShowAddVariationForm);
+  };
 
   const handleAddVariation = () => {
     if (!newCountry || !newVariation || !idiom.idiom || !newExamples || !newLanguage) {
-      console.error('Country, variation, idiom, language, and examples must have valid values.');
+      alert('Country, variation, idiom, language, and examples must have valid values.');
       return;
     }
     console.log("newExamples:", newExamples);
@@ -93,6 +101,13 @@ const IdiomDetailsScreen = ({ route }) => {
         <Text style={styles.infoText}><Text style={styles.bold}>Translated Examples:</Text> {idiom.examplesTranslation}</Text>
         {/* Check if countryVariations exists */}
         {idiom.countryVariations && (
+          <TouchableOpacity style={styles.button} onPress={handleShowCountryVariations}>
+          <Text style={styles.buttonText}>
+            See other countries variations
+          </Text>
+          </TouchableOpacity>
+        )}
+        {showCountryVariations && idiom.countryVariations && (
           <View style={styles.variationContainer}>
             <Text style={styles.variationsTitle}>Country Variations:</Text>
             {Object.keys(idiom.countryVariations).map((language) => (
@@ -114,11 +129,11 @@ const IdiomDetailsScreen = ({ route }) => {
             ))}
           </View>
         )}
-            {user && (
-              <TouchableOpacity onPress={() => setShowAddVariationForm(true)}>
-                <Text>Add New Variation</Text>
-              </TouchableOpacity>
-            )}
+        {user && (
+            <TouchableOpacity style={styles.button} onPress={handleShowAddCountryVariation}>
+              <Text style={styles.buttonText}>Add New Variation</Text>
+            </TouchableOpacity>
+        )}
 
             {/* Show the form to add a new variation when the button is clicked */}
             {showAddVariationForm && (
@@ -195,8 +210,10 @@ const IdiomDetailsScreen = ({ route }) => {
                   value={newExamples}
                   onChangeText={setNewExamples}
                 />
-                <TouchableOpacity onPress={handleAddVariation}>
-                  <Text>Submit</Text>
+                <TouchableOpacity style={styles.button} onPress={() => {
+                  handleAddVariation();
+                  handleShowAddCountryVariation();}}>
+                  <Text style={styles.buttonText}>Submit</Text>
                 </TouchableOpacity>
               {/* </View> */}
               </KeyboardAvoidingView>
@@ -277,5 +294,16 @@ const styles = StyleSheet.create({
   },
   formContainer: {
     padding: 20,
+  },
+  button: {
+    backgroundColor: '#6B179C9F',
+    padding: 15,
+    margin:10,
+    borderRadius: 10,
+    alignItems: 'center',
+  },
+  buttonText: {
+    color: 'white',
+    fontWeight: 'bold',
   },
 });
