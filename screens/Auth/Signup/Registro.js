@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigation } from '@react-navigation/core';
 import { KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, View, ScrollView } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { auth } from '../config';
+import { auth } from '../../../config';
 
 const Registro = () => {
   const [email, setEmail] = useState('');

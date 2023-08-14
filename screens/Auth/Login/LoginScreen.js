@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigation } from '@react-navigation/core';
 import { KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
-import { auth } from '../config';
-import HomeUserScreen from './HomeUserScreen';
+import { auth } from '../../../config';
+import HomeUserScreen from '../../en/HomeUserScreen';
 
-const Acceso = () => {
+const LoginScreen = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   
@@ -13,7 +13,7 @@ const Acceso = () => {
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(user => {
       if (user) {
-        navigation.navigate("Bienvenida")
+        navigation.navigate("Home")
       }
     });
 
@@ -24,14 +24,14 @@ const Acceso = () => {
     auth
       .signInWithEmailAndPassword(email, password)
       .then(() => {
-        console.log('Inició sesión con: ', email);
+        console.log('Successfully logged in with: ', email);
         // Check if user is logged in
         const user = auth.currentUser;
         if (user) {
-          navigation.navigate('Usuario');
+          navigation.navigate('HomeUser');
         } else {
           // User is not logged in (guest), navigate to Explore Idioms
-          navigation.navigate('Explora');
+          navigation.navigate('ExploreIdioms');
         }
       })
       .catch(error => alert(error.message));
@@ -41,13 +41,13 @@ const Acceso = () => {
     <KeyboardAvoidingView style={styles.container} behavior="padding">
       <View style={styles.inputContainer}>
         <TextInput
-          placeholder='Correo electrónico'
+          placeholder='Email'
           value={email}
           onChangeText={text => setEmail(text)}
           style={styles.input}
         />
         <TextInput
-          placeholder='Contraseña'
+          placeholder='Password'
           value={password}
           onChangeText={text => setPassword(text)}
           style={styles.input}
@@ -59,13 +59,13 @@ const Acceso = () => {
           onPress={handleLogin}
           style={styles.button}
         >
-          <Text style={styles.buttonText}>Acceso</Text>
+          <Text style={styles.buttonText}>Login</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          onPress={() => navigation.navigate('Registro')}
+          onPress={() => navigation.navigate('SignUp')}
           style={[styles.button, styles.buttonOutline]}
         >
-          <Text style={styles.buttonOutlineText}>Registro</Text>
+          <Text style={styles.buttonOutlineText}>Register</Text>
         </TouchableOpacity>
       </View>
     </KeyboardAvoidingView>
@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
     marginTop: 40,
   },
   button: {
-    backgroundColor: '#8a2be2',
+    backgroundColor: '#730A9997',
     width: '100%',
     padding: 15,
     borderRadius: 10,
@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
   buttonOutline: {
     backgroundColor: 'white',
     marginTop: 5,
-    borderColor: '#8a2be2',
+    borderColor: '#730A9997',
     borderWidth: 2,
   },
   buttonText: {
@@ -113,10 +113,10 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   buttonOutlineText: {
-    color: '#8a2be2',
+    color: '#730A9997',
     fontWeight: '700',
     fontSize: 16,
   },
 });
 
-export default Acceso;
+export default LoginScreen;

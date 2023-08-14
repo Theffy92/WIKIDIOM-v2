@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigation } from '@react-navigation/core';
 import { KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
-import { auth } from '../config';
-import HomeUserScreen from './HomeUserScreen';
+import { auth } from '../../../config';
+import HomeUserScreen from '../../en/HomeUserScreen';
 
-const LoginScreen = () => {
+const Acceso = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   
@@ -13,7 +13,7 @@ const LoginScreen = () => {
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(user => {
       if (user) {
-        navigation.navigate("Home")
+        navigation.navigate("Bienvenida")
       }
     });
 
@@ -24,14 +24,14 @@ const LoginScreen = () => {
     auth
       .signInWithEmailAndPassword(email, password)
       .then(() => {
-        console.log('Successfully logged in with: ', email);
+        console.log('Inició sesión con: ', email);
         // Check if user is logged in
         const user = auth.currentUser;
         if (user) {
-          navigation.navigate('HomeUser');
+          navigation.navigate('Usuario');
         } else {
           // User is not logged in (guest), navigate to Explore Idioms
-          navigation.navigate('ExploreIdioms');
+          navigation.navigate('Explora');
         }
       })
       .catch(error => alert(error.message));
@@ -41,13 +41,13 @@ const LoginScreen = () => {
     <KeyboardAvoidingView style={styles.container} behavior="padding">
       <View style={styles.inputContainer}>
         <TextInput
-          placeholder='Email'
+          placeholder='Correo electrónico'
           value={email}
           onChangeText={text => setEmail(text)}
           style={styles.input}
         />
         <TextInput
-          placeholder='Password'
+          placeholder='Contraseña'
           value={password}
           onChangeText={text => setPassword(text)}
           style={styles.input}
@@ -59,13 +59,13 @@ const LoginScreen = () => {
           onPress={handleLogin}
           style={styles.button}
         >
-          <Text style={styles.buttonText}>Login</Text>
+          <Text style={styles.buttonText}>Acceso</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          onPress={() => navigation.navigate('SignUp')}
+          onPress={() => navigation.navigate('Registro')}
           style={[styles.button, styles.buttonOutline]}
         >
-          <Text style={styles.buttonOutlineText}>Register</Text>
+          <Text style={styles.buttonOutlineText}>Registro</Text>
         </TouchableOpacity>
       </View>
     </KeyboardAvoidingView>
@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
     marginTop: 40,
   },
   button: {
-    backgroundColor: '#730A9997',
+    backgroundColor: '#8a2be2',
     width: '100%',
     padding: 15,
     borderRadius: 10,
@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
   buttonOutline: {
     backgroundColor: 'white',
     marginTop: 5,
-    borderColor: '#730A9997',
+    borderColor: '#8a2be2',
     borderWidth: 2,
   },
   buttonText: {
@@ -113,10 +113,10 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   buttonOutlineText: {
-    color: '#730A9997',
+    color: '#8a2be2',
     fontWeight: '700',
     fontSize: 16,
   },
 });
 
-export default LoginScreen;
+export default Acceso;
