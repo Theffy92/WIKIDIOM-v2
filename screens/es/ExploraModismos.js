@@ -1,9 +1,9 @@
 import { StyleSheet, Text, View, TextInput, FlatList, TouchableOpacity, Modal, Pressable } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import React, { useState, useEffect } from 'react';
-import { firebase } from '../config';
+import { firebase } from '../../config';
 
-const ExploreIdiomsScreen = ({ navigation }) => {
+const ExploraModismos = ({ navigation }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [filteredIdioms, setFilteredIdioms] = useState([]);
   const [idiomsData, setIdiomsData] = useState([]);
@@ -21,6 +21,7 @@ const ExploreIdiomsScreen = ({ navigation }) => {
     fetchIdioms();
   }, []);
   
+  // Apply filters when any filter state changes
   useEffect(() => {
     filterIdioms(languageFilter, countryFilter, orderFilter, searchQuery);
   }, [languageFilter, countryFilter, orderFilter, searchQuery]);
@@ -37,7 +38,7 @@ const ExploreIdiomsScreen = ({ navigation }) => {
       setCountryOptions(uniqueCountries);
       setFilteredCountryOptions(uniqueCountries);
     } catch (error) {
-      console.error('Error fetching idioms:', error);
+      console.error('Error al obtener modismos:', error);
     }
   };
 
@@ -92,10 +93,9 @@ const ExploreIdiomsScreen = ({ navigation }) => {
     // Reset the filtered idioms to the original data
     filterIdioms('', '', '', '');
   };
-  
-  
+    
   const renderIdiomItem = ({ item }) => (
-    <TouchableOpacity onPress={() => navigation.navigate('IdiomDetails', { idiom: item })}>
+    <TouchableOpacity onPress={() => navigation.navigate('Modismos', { idiom: item })}>
       <Text style={styles.idiomTitle}>{item.idiom}</Text>
       {/* <Text style={styles.idiomMeaning}>{item.meaning}</Text> */}
     </TouchableOpacity>
@@ -105,13 +105,19 @@ const ExploreIdiomsScreen = ({ navigation }) => {
 
   const orderOptions = ['asc', 'desc'];
 
+  const translations = {
+    england: 'Inglaterra',
+    spain: 'España',
+    usa: 'Estados Unidos',
+  };
+
   return (
     <View style={{ flex: 1 }}>
       <LinearGradient colors={['#16355D', '#405990D3', '#31C7B1D0']} style={{ flex: 1 }}>
         <View style={styles.container}>
           <TextInput
             style={[styles.searchInput, { color: 'white' }]}
-            placeholder="Search idioms by language, keyword..."
+            placeholder="Buscar modismos por idioma o palabra clave."
             placeholderTextColor="white"
             value={searchQuery}
             onChangeText={handleSearch}
@@ -119,7 +125,7 @@ const ExploreIdiomsScreen = ({ navigation }) => {
           {/* Filter by Language */}
           <View style={styles.filtersContainer}>
             <TouchableOpacity onPress={() => setIsLanguageModalVisible(true)}>
-              <Text style={styles.filterButtonText}>Filter by Language</Text>
+              <Text style={styles.filterButtonText}>Filtrar por idioma</Text>
             </TouchableOpacity>
             <Modal
               animationType="slide"
@@ -140,7 +146,6 @@ const ExploreIdiomsScreen = ({ navigation }) => {
                     style={[styles.modalOption, languageFilter === option ? styles.selectedOption : null]}
                     onPress={() => {
                       setLanguageFilter(option);
-                      // Filter the country options based on the selected language
                       const mainCountries = idiomsData
                       .filter(
                         (idiom) =>
@@ -157,7 +162,9 @@ const ExploreIdiomsScreen = ({ navigation }) => {
                       filterIdioms(option, countryFilter, orderFilter, searchQuery);
                     }}
                   >
-                    <Text style={styles.modalOptionText}>{option}</Text>
+                    <Text style={styles.modalOptionText}>
+                      {option === 'English' ? 'Inglés' : 'Español'}
+                    </Text>
                   </Pressable>
                 ))}
               </View>
@@ -166,44 +173,47 @@ const ExploreIdiomsScreen = ({ navigation }) => {
           
           {/* Filter by Country */}
           <View style={styles.filtersContainer}>
-            <TouchableOpacity onPress={() => setIsCountryModalVisible(true)}>
-              <Text style={styles.filterButtonText}>Filter by Country</Text>
-            </TouchableOpacity>
-            <Modal
-              animationType="slide"
-              transparent={true}
-              visible={isCountryModalVisible}
-              onRequestClose={() => setIsCountryModalVisible(false)}
-            >
-              <View style={styles.modalView}>
-                <View style={styles.modalHeader}>
-                  <TouchableOpacity onPress={()=> setIsCountryModalVisible(false)}>
-                        <Text style={styles.modalHeaderCloseText}>X</Text>
-                  </TouchableOpacity>
+              <TouchableOpacity onPress={() => setIsCountryModalVisible(true)}>
+                <Text style={styles.filterButtonText}>Filtrar por país</Text>
+              </TouchableOpacity>
+              <Modal
+                animationType="slide"
+                transparent={true}
+                visible={isCountryModalVisible}
+                onRequestClose={() => setIsCountryModalVisible(false)}
+              >
+                <View style={styles.modalView}>
+                  <View style={styles.modalHeader}>
+                    <TouchableOpacity onPress={() => setIsCountryModalVisible(false)}>
+                      <Text style={styles.modalHeaderCloseText}>X</Text>
+                    </TouchableOpacity>
+                  </View>
+                  {filteredCountryOptions.map((option) => {
+                    // Check if the country needs to be translated
+                    const translatedOption = translations[option.toLowerCase()] || option;
+
+                    return (
+                      <Pressable
+                        key={option}
+                        style={[styles.modalOption, countryFilter === option ? styles.selectedOption : null]}
+                        onPress={() => {
+                          setCountryFilter(option);
+                          setIsCountryModalVisible(false);
+                          filterIdioms(languageFilter, option, orderFilter, searchQuery);
+                        }}
+                      >
+                        <Text style={styles.modalOptionText}>{translatedOption}</Text>
+                      </Pressable>
+                    );
+                  })}
                 </View>
-                {/* <Text style={styles.modalTitle}>Filter by Country</Text> */}
-                {filteredCountryOptions.map((option) => (
-                  <Pressable
-                    key={option}
-                    style={[styles.modalOption, countryFilter === option ? styles.selectedOption : null]}
-                    onPress={() => {
-                      setCountryFilter(option);
-                      setIsCountryModalVisible(false);
-                      filterIdioms(languageFilter, option, orderFilter, searchQuery);
-                      
-                    }}
-                  >
-                    <Text style={styles.modalOptionText}>{option}</Text>
-                  </Pressable>
-                ))}
-              </View>
-            </Modal>
+              </Modal>
           </View>
 
           {/* Order by */}
           <View style={styles.filtersContainer}>
             <TouchableOpacity onPress={() => setIsOrderModalVisible(true)}>
-              <Text style={styles.filterButtonText}>Order by</Text>
+              <Text style={styles.filterButtonText}>Ordenar por</Text>
             </TouchableOpacity>
             <Modal
               animationType="slide"
@@ -229,7 +239,7 @@ const ExploreIdiomsScreen = ({ navigation }) => {
                     }}
                   >
                     <Text style={styles.modalOptionText}>
-                      {option === 'asc' ? 'Ascending' : 'Descending'}
+                      {option === 'asc' ? 'Ascendente' : 'Descendente'}
                     </Text>
                   </Pressable>
                 ))}
@@ -240,7 +250,7 @@ const ExploreIdiomsScreen = ({ navigation }) => {
           style={styles.resetFiltersButton}
           onPress={handleResetFilters}
         >
-          <Text style={styles.resetFiltersButtonText}>Reset Filters</Text>
+          <Text style={styles.resetFiltersButtonText}>Restablecer filtros</Text>
         </TouchableOpacity>
           <FlatList
             data={filteredIdioms}
@@ -340,4 +350,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ExploreIdiomsScreen;
+export default ExploraModismos;

@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, TouchableOpacity, TextInput, ScrollView, KeyboardAvoidingView } from 'react-native';
 import React, {useState} from 'react';
-import { useAuth } from './AuthContext';
-import { firebase } from '../config';
+import { useAuth } from '../Auth/AuthContext';
+import { firebase } from '../../config';
 import ModalSelector from 'react-native-modal-selector';
 
 const IdiomDetailsScreen = ({ route }) => {

@@ -1,22 +1,22 @@
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import {LinearGradient} from 'expo-linear-gradient';
 import React from 'react';
-import {auth} from '../config';
+import {auth} from '../../config';
 
-const HomeUserScreen = ({navigation}) => {
+const PaginaUsuario = ({navigation}) => {
     const handleExploreIdioms = () => {
-        navigation.navigate('ExploreIdioms');
+        navigation.navigate('Explora');
     };
     
     const handleAddNewIdiom = () => {
-        navigation.navigate('AddNewIdiom');
+        navigation.navigate('Agregar');
     };
     const handleLogout = () => {
         auth
           .signOut()
           .then(() => {
-            console.log('Successfully logged out.');
-            navigation.reset({ index: 0, routes: [{ name: 'Welcome' }] }); // Reset the navigation stack to Welcome screen
+            console.log('Cerró sesión exitosamente.');
+            navigation.reset({ index: 0, routes: [{ name: 'Bienvenida' }] }); // Reset the navigation stack to Welcome screen
           })
           .catch(error => alert(error.message));
     };
@@ -26,13 +26,13 @@ const HomeUserScreen = ({navigation}) => {
           <LinearGradient colors={['#31C7B1D0', '#405990D3', '#183965E3' ]} style={{flex:1}}>
             <View style={styles.container}>
                 <TouchableOpacity onPress={handleExploreIdioms} style={styles.button}>
-                    <Text style={styles.buttonText}>Explore Idioms</Text>
+                    <Text style={styles.buttonText}>Explorar Modismos</Text>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={handleAddNewIdiom} style={styles.button}>
-                    <Text style={styles.buttonText}>Add New Idiom</Text>
+                    <Text style={styles.buttonText}>Agregar Modismo</Text>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={handleLogout} style={[styles.button, styles.logoutButton]}>
-                    <Text style={styles.logoutButtonText}>Logout</Text>
+                    <Text style={styles.logoutButtonText}>Cerrar sesión</Text>
                 </TouchableOpacity>
             </View>
           </LinearGradient>
@@ -41,7 +41,7 @@ const HomeUserScreen = ({navigation}) => {
     );
 };
 
-export default HomeUserScreen
+export default PaginaUsuario
 
 const styles = StyleSheet.create({
     container: {

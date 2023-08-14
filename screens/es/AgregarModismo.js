@@ -1,9 +1,22 @@
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, ScrollView } from 'react-native';
 import React, { useState } from 'react';
-import { firebase } from '../config';
+import { firebase } from '../../config';
 import ModalSelector from 'react-native-modal-selector';
 
-const AddNewIdiomsScreen = () => {
+const languageMapping = {
+  'Inglés': 'English',
+  'Español': 'Spanish',
+};
+
+const countryMapping = {
+  'EUA': 'USA',
+  'Inglaterra': 'England',
+  'Argentina': 'Argentina',
+  'México': 'Mexico',
+  'España': 'Spain',
+};
+
+const AgregarModismo = () => {
   const [mainLanguage, setMainLanguage] = useState('');
   const [mainCountry, setMainCountry] = useState('');
   const [idiom, setIdiom] = useState('');
@@ -21,13 +34,13 @@ const AddNewIdiomsScreen = () => {
     try {
       // Check if required fields are empty before adding the idiom
       if (!mainLanguage || !mainCountry || !idiom || !meaning || !examples || !translatedMeaning || !examplesTranslation) {
-        alert('Please fill in all required fields.');
+        alert('Por favor, rellene los campos obligatorios.');
         return;
       }
 
       const docData = {
-        language: mainLanguage,
-        country: mainCountry,
+        language: languageMapping[mainLanguage],
+        country: countryMapping[mainCountry],
         idiom,
         meaning,
         examples: examples.split('\n'),
@@ -39,12 +52,12 @@ const AddNewIdiomsScreen = () => {
       if (countryVariations.length > 0) {
         const countryVariationsData = {};
         countryVariations.forEach((variation) => {
-          const language = variation.language;
+          const language = languageMapping[variation.language];
           if (!countryVariationsData[language]) {
             countryVariationsData[language] = [];
           }
           countryVariationsData[language].push({
-            country: variation.country,
+            country: countryMapping[variation.country],
             variation: variation.variation,
             examples: variation.examples.split('\n'),
           });
@@ -54,7 +67,7 @@ const AddNewIdiomsScreen = () => {
 
       await firebase.firestore().collection('idioms').add(docData);
 
-      console.log('Idiom added to Firestore');
+      console.log('Modismo agregado a Firestore');
       // Reset the input fields after adding the idiom
       setMainLanguage('');
       setMainCountry('');
@@ -65,7 +78,7 @@ const AddNewIdiomsScreen = () => {
       setTranslatedMeaning('');
       setExamplesTranslation('');
     } catch (error) {
-      console.error('Error adding idiom to Firestore:', error);
+      console.error('Error al agregar modismo a Firestore:', error);
     }
   };
   const handleShowCountryVariations = () => {
@@ -74,7 +87,7 @@ const AddNewIdiomsScreen = () => {
 
   const handleAddCountryVariation = () => {
     if (!selectedCountry || !selectedLanguage) {
-      alert('Please select both country and language for the variation.');
+      alert('Seleccione el país y el idioma.');
       return;
     }
 
@@ -91,54 +104,55 @@ const AddNewIdiomsScreen = () => {
 
   return (
     <ScrollView contentContainerStyle={styles.scrollContent}>
-      <Text style={styles.title}>Add New Idiom</Text>
+      <Text style={styles.title}>Agregar Modismo</Text>
       <ModalSelector
           data={[
-            { key: 0, label: 'Select Language' },
-            { key: 1, label: 'English' },
-            { key: 2, label: 'Spanish' },
+            { key: 0, label: 'Selecciona idioma' },
+            { key: 1, label: 'Inglés' },
+            { key: 2, label: 'Español' },
           ]}
-          initValue="Select Language *"
-          onChange={(option) => setMainLanguage(option.label)}>
+          initValue="Selecciona idioma"
+          onChange={(option) => setMainLanguage(option.label)}
+      >
           <TextInput
             style={styles.input}
-            placeholder="Select Language *"
+            placeholder="Selecciona idioma *"
             value={mainLanguage}
             editable={false}
           />
       </ModalSelector>
-      {mainLanguage === 'English' && (
-            <ModalSelector
-              data={[
-                { key: 0, label: 'Select Country' },
-                { key: 1, label: 'USA' },
-                { key: 2, label: 'England' },
-              ]}
-              initValue="Select Country *"
-              onChange={(option) => setMainCountry(option.label)}
-            >
-              <TextInput
-                style={styles.input}
-                placeholder="Select Country *"
-                value={mainCountry}
-                editable={false}
-              />
-            </ModalSelector>
-          )}
-          {mainLanguage === 'Spanish' && (
-            <ModalSelector
-              data={[
-                { key: 0, label: 'Select Country' },
+      {mainLanguage === 'Inglés' && (
+        <ModalSelector
+          data={[
+            { key: 0, label: 'Selecciona país' },
+            { key: 1, label: 'EUA' },
+            { key: 2, label: 'Inglaterra' },
+          ]}
+          initValue="Selecciona país"
+          onChange={(option) => setMainCountry(option.label)}
+        >
+          <TextInput
+            style={styles.input}
+             placeholder="Selecciona país *"
+            value={mainCountry}
+            editable={false}
+          />
+        </ModalSelector>
+      )}
+      {mainLanguage === 'Español' && (
+        <ModalSelector
+          data={[
+                { key: 0, label: 'Selecciona país' },
                 { key: 1, label: 'Argentina' },
-                { key: 2, label: 'Mexico' },
-                { key: 3, label: 'Spain' },
+                { key: 2, label: 'México' },
+                { key: 3, label: 'España' },
               ]}
-              initValue="Select Country"
+              initValue="Selecciona país"
               onChange={(option) => setMainCountry(option.label)}
             >
               <TextInput
                 style={styles.input}
-                placeholder="Select Country *"
+                placeholder="Selecciona país *"
                 value={mainCountry}
                 editable={false}
               />
@@ -146,108 +160,108 @@ const AddNewIdiomsScreen = () => {
         )}
       <TextInput
         style={styles.input}
-        placeholder="Idiom *"
+        placeholder="Modismo *"
         value={idiom}
         onChangeText={setIdiom}
       />
       <TextInput
         style={styles.input}
-        placeholder="Meaning *"
+        placeholder="Significado *"
         value={meaning}
         onChangeText={setMeaning}
       />
       <TextInput
         style={styles.input}
-        placeholder="Translated Meaning *"
+        placeholder="Traducción de significado *"
         value={translatedMeaning}
         onChangeText={setTranslatedMeaning}
       />
       <TextInput
         style={styles.input}
-        placeholder="Examples (separated by new lines) *"
+        placeholder="Ejemplos (separados por nuevas líneas) *"
         value={examples}
         onChangeText={setExamples}
         multiline
       />
       <TextInput
         style={styles.input}
-        placeholder="Examples Translation (separated by new lines) *"
+        placeholder="Tradución de ejemplos (separados por nuevas líneas) *"
         value={examplesTranslation}
         onChangeText={setExamplesTranslation}
         multiline
       />
       <TouchableOpacity style={styles.button} onPress={handleShowCountryVariations}>
         <Text style={styles.buttonText}>
-          Do you know an English or Spanish equivalence for this idiom?
+        ¿Conoces una equivalencia en inglés o español para este modismo?
         </Text>
       </TouchableOpacity>
       {showCountryVariations && (
         <View>
           <ModalSelector
             data={[
-              { key: 0, label: 'Select Language' },
-              { key: 1, label: 'English' },
-              { key: 2, label: 'Spanish' },
+              { key: 0, label: 'Selecciona idioma' },
+              { key: 1, label: 'Inglés' },
+              { key: 2, label: 'Español' },
             ]}
-            initValue="Select Language"
+            initValue="Selecciona idioma"
             onChange={(option) => setSelectedLanguage(option.label)}
           >
             <TextInput
               style={styles.input}
-              placeholder="Select Language "
+              placeholder="Selecciona idioma "
               value={selectedLanguage}
               editable={false}
             />
           </ModalSelector>
-          {selectedLanguage === 'English' && (
+          {selectedLanguage === 'Inglés' && (
             <ModalSelector
               data={[
-                { key: 0, label: 'Select Country' },
-                { key: 1, label: 'USA' },
-                { key: 2, label: 'England' },
+                { key: 0, label: 'Selecciona país' },
+                { key: 1, label: 'EUA' },
+                { key: 2, label: 'Inglaterra' },
               ]}
-              initValue="Select Country"
+              initValue="Selecciona país"
               onChange={(option) => setSelectedCountry(option.label)}
             >
               <TextInput
                 style={styles.input}
-                placeholder="Select Country *"
+                placeholder="Selecciona país *"
                 value={selectedCountry}
                 editable={false}
               />
             </ModalSelector>
           )}
-          {selectedLanguage === 'Spanish' && (
+          {selectedLanguage === 'Español' && (
             <ModalSelector
               data={[
-                { key: 0, label: 'Select Country' },
+                { key: 0, label: 'Selecciona país' },
                 { key: 1, label: 'Argentina' },
-                { key: 2, label: 'Mexico' },
-                { key: 3, label: 'Spain' },
+                { key: 2, label: 'México' },
+                { key: 3, label: 'España' },
               ]}
-              initValue="Select Country"
+              initValue="Selecciona país"
               onChange={(option) => setSelectedCountry(option.label)}
             >
               <TextInput
                 style={styles.input}
-                placeholder="Select Country *"
+                placeholder="Selecciona país *"
                 value={selectedCountry}
                 editable={false}
               />
             </ModalSelector>
           )}
           <TouchableOpacity style={styles.button} onPress={handleAddCountryVariation}>
-            <Text style={styles.buttonText}>Add Country Variation</Text>
+            <Text style={styles.buttonText}>Agregar país de la variación</Text>
           </TouchableOpacity>
           {countryVariations.map((variation, index) => (
             <View key={index}>
-              <Text style={styles.subTitle}>Country Variation {index + 1}</Text>
-              <Text style={styles.label}>Country:{variation.country}</Text>
-              <Text style={styles.label}>Language:{variation.language}</Text>
-              <Text style={styles.label}>Idiom Variation:</Text>
+              <Text style={styles.subTitle}>País de la variación {index + 1}</Text>
+              <Text style={styles.label}>País:{variation.country}</Text>
+              <Text style={styles.label}>Idioma:{variation.language}</Text>
+              <Text style={styles.label}>Variación de modismo:</Text>
               <TextInput
                 style={styles.input}
-                placeholder="Variation *"
+                placeholder="Variación *"
                 value={variation.variation}
                 onChangeText={(value) => {
                   const updatedVariations = [...countryVariations];
@@ -256,10 +270,10 @@ const AddNewIdiomsScreen = () => {
                 }}
                 multiline
               />
-              <Text style={styles.label}>Examples:</Text>
+              <Text style={styles.label}>Ejemplos:</Text>
               <TextInput
                 style={styles.input}
-                placeholder="Examples (separated by new lines) *"
+                placeholder="Ejemplos (separados por nuevas líneas) *"
                 value={variation.examples}
                 onChangeText={(value) => {
                   const updatedVariations = [...countryVariations];
@@ -273,14 +287,14 @@ const AddNewIdiomsScreen = () => {
         </View>
       )}
       <TouchableOpacity style={styles.button} onPress={handleAddIdiom}>
-        <Text style={styles.buttonText}>Add Idiom</Text>
+        <Text style={styles.buttonText}>Agregar modismo</Text>
       </TouchableOpacity>
-      <Text style={styles.note}>* Required fields</Text>
+      <Text style={styles.note}>* Campos obligatorios</Text>
     </ScrollView>
   );
 };
 
-export default AddNewIdiomsScreen;
+export default AgregarModismo;
 
 const styles = StyleSheet.create({
   scrollContent: {

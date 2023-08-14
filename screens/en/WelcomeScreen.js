@@ -5,7 +5,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 
 const WelcomeScreen = ({ navigation }) => {
   const handleStartButtonPress = () => {
-    navigation.navigate('Inicio'); // Navigate to the LoginScreen when Start button is pressed
+    navigation.navigate('Home'); // Navigate to the LoginScreen when Start button is pressed
   };
 
   const handleSpanishButtonPress = () => {
@@ -20,24 +20,24 @@ const WelcomeScreen = ({ navigation }) => {
     <View style={{flex:1}}>
       <LinearGradient colors={['#09203F', '#3b5998', '#1EAE98']} style={{flex:1}}>
         <View style={styles.container}>
-          <Image source={require('../icons/world-removebg-preview.png')} style= {{
+          <Image source={require('../../icons/world-removebg-preview.png')} style= {{
             height:120,
             width:190,
             // position: 'absolute',
             marginRight: 10,
-            marginTop: 40,
+            marginTop: '50%',
           }}/>
-          <Text style={styles.title}>Bienvenido a WikIDIOM!</Text>
+          <Text style={styles.title}>Welcome to WikIDIOM!</Text>
           <TouchableOpacity style={styles.button} onPress={handleStartButtonPress}>
-            <Text style={styles.buttonText}>Iniciar</Text>
+            <Text style={styles.buttonText}>Start</Text>
           </TouchableOpacity>
           <View style={styles.buttonContainer}>
             <View style={styles.bottomButtons}>
               <TouchableOpacity style={[styles.languageButton]} onPress={handleSpanishButtonPress}>
-                <Image source={require('../icons/spain.png')} />
+                <Image source={require('../../icons/spain.png')} />
               </TouchableOpacity>
               <TouchableOpacity style={[styles.languageButton]} onPress={handleEnglishButtonPress} >
-              <Image source={require('../icons/united-states.png')} />
+              <Image source={require('../../icons/united-states.png')} />
               </TouchableOpacity>
             </View>
           </View>
@@ -57,10 +57,12 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 50,
     fontWeight: 'bold',
-    marginBottom: 30,
-    marginTop: 40, 
+    marginBottom: 40,
+    marginTop: '10%', 
     fontFamily: 'Arial',
-    color:'white'
+    color:'white',
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   buttonContainer: {
     flex: 1,
