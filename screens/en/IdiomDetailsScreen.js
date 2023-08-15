@@ -115,8 +115,8 @@ const IdiomDetailsScreen = ({ route }) => {
                 <Text style={styles.languageText}>Language: {language}</Text>
                 {idiom.countryVariations[language].map((variation, index) => (
                   <View key={index}>
-                    <Text style={styles.countryText}>Country: {variation.country}</Text>
-                    <Text style={styles.variationText}>Variation: {variation.variation}</Text>
+                    <Text style={styles.countryText}><Text style={styles.bold}>Country: </Text> {variation.country}</Text>
+                    <Text style={styles.variationText}><Text style={styles.bold}>Variation: </Text> {variation.variation}</Text>
                     <Text style={styles.exampleTitle}>Examples:</Text>
                     {variation.examples.map((example, exampleIndex) => (
                       <Text key={exampleIndex} style={styles.exampleText}>
@@ -270,6 +270,7 @@ const styles = StyleSheet.create({
   },
   countryText: {
     fontSize: 16,
+    marginLeft: 5,
     color: '#555',
   },
   variationText: {
@@ -281,6 +282,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
     marginTop: 10,
+    marginLeft: 10,
     color: '#555',
   },
   exampleText: {
