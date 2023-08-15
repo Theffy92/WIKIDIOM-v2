@@ -59,13 +59,13 @@ const Acceso = () => {
           onPress={handleLogin}
           style={styles.button}
         >
-          <Text style={styles.buttonText}>Acceso</Text>
+          <Text style={styles.buttonText}>Iniciar Sesión</Text>
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => navigation.navigate('Registro')}
           style={[styles.button, styles.buttonOutline]}
         >
-          <Text style={styles.buttonOutlineText}>Registro</Text>
+          <Text style={styles.buttonOutlineText}>Registrarse</Text>
         </TouchableOpacity>
       </View>
     </KeyboardAvoidingView>

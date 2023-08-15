@@ -27,7 +27,7 @@ const WelcomeScreen = ({ navigation }) => {
             marginRight: 10,
             marginTop: '50%',
           }}/>
-          <Text style={styles.title}>Bienvenido a WikIDIOM!</Text>
+          <Text style={styles.title}>Bienvenid@ a WikIDIOM!</Text>
           <TouchableOpacity style={styles.button} onPress={handleStartButtonPress}>
             <Text style={styles.buttonText}>Iniciar</Text>
           </TouchableOpacity>

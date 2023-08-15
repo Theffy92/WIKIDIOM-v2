@@ -83,7 +83,7 @@ const Registro = () => {
               onPress={handleSignUp}
               style={styles.button}
             >
-              <Text style={styles.buttonText}>Registro</Text>
+              <Text style={styles.buttonText}>Registrarse</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => navigation.navigate('Acceso')}
