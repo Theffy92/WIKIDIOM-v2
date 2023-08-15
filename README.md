@@ -6,7 +6,7 @@ Users are able to retrieve idioms and slang using the search bar by entering a k
 
 ## Screenshots
 
-<img src="/assets/images/welcome.png" alt="Welcome Page" width="250" height="500">. <img src="/assets/images/exploramodismos.png" alt="Explora Modismo" width="250" height="500">. <img src="/assets/images/detallesmodismo.png" alt="Detalles modismo" width="250" height="500">. <img src="/assets/images/variaciones.png" alt="Variaciones" width="250" height="500">
+<img src="/assets/images/welcome.png" alt="Welcome Page" width="400" height="500">. <img src="/assets/images/exploramodismos.png" alt="Explora Modismo" width="400" height="500">. <img src="/assets/images/detallesmodismo.png" alt="Detalles modismo" width="400" height="500">. <img src="/assets/images/variaciones.png" alt="Variaciones" width="400" height="500">
 
 ## Features 
 1. Database: the user can click on a specific idiom or slang, then an explanation of the meaning and a similar idiom in another language (if it exists) will be retrieved and displayed.
