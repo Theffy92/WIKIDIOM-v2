@@ -8,8 +8,10 @@ export async function getAIExample(idiom, meaning, language= "English") {
             "Authorization": `Bearer ${process.env.OPEN_AI_API_KEY}`
         },
         body: JSON.stringify({
-            model: "gpt-4",
-            messages: [{ role: "user", content: prompt }]
+            model: "gpt-4.1",
+            messages: [{ role: "user", content: prompt }],
+            max_tokens: 60,
+            temperature: 0.7,
         })
     });
 
