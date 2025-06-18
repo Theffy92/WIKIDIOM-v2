@@ -6,7 +6,7 @@ const seedData = require('../data/seedData');
 const fetch = (...args) => import('node-fetch').then(mod => mod.default(...args));
 
 const OPEN_AI_API_KEY = process.env.OPEN_AI_API_KEY;
-console.log("OPEN_AI_API_KEY:", OPEN_AI_API_KEY); 
+// console.log("OPEN_AI_API_KEY:", OPEN_AI_API_KEY); 
 
 async function getAIExample(idiom, meaning, language = "English") {
   const prompt = `Give me a natural, short example sentence using the idiom "${idiom}" in "${language}". The meaning is "${meaning}". The example should be relevant to the idiom's meaning and should not be a translation of the idiom itself.`;
@@ -26,7 +26,7 @@ async function getAIExample(idiom, meaning, language = "English") {
   });
 
   const data = await response.json();
-    console.log("API response for idiom:", idiom, data); // Add this line
+  console.log("API response for idiom:", idiom, data); 
   if (data.error) {
     console.error('OpenAI API error:', data.error);
   }
@@ -35,11 +35,7 @@ async function getAIExample(idiom, meaning, language = "English") {
 
 async function main() {
   for (let idiom of seedData) {
-    // if (!idiom.examples || idiom.examples.length === 0 || idiom.examples[0].startsWith("AI:")) {
-    //   console.log(`Generating AI example for: ${idiom.idiom}`);
-    //   const aiExample = await getAIExample(idiom.idiom, idiom.meaning, idiom.language);
-    //   idiom.examples = [aiExample];
-    // }
+    // Overwrite the examples with AI-generated examples
     console.log(`Generating AI example for: ${idiom.idiom}`);
     const aiExample = await getAIExample(idiom.idiom, idiom.meaning, idiom.language);
     idiom.examples = [aiExample];
