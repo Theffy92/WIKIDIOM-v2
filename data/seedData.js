@@ -9,8 +9,7 @@ const seedData = [
       "¡Tranquilo, no es para tanto, bajá un cambio!"
     ],
     "examplesTranslation": [
-      "You're working too hard. Calm down!",
-      "You are very agressive lately. Calm down!"
+      "Relax, it's not a big deal, calm down."
     ],
     "countryVariations": {
       "English": [
@@ -18,8 +17,7 @@ const seedData = [
           "country": "USA",
           "variation": "Take it easy!",
           "examples": [
-            "You're working really hard. Take it easy and relax.",
-            "You're very aggressive. Take it easy!."
+            "Don't stress out about the test—just take it easy!"
           ]
         }
       ]
@@ -35,7 +33,7 @@ const seedData = [
       "Juan siempre me descansa cuando me equivoco en clase."
     ],
     "examplesTranslation": [
-      "Don't pay attention to them. Don't you realize they're mocking you?"
+      "Juan always makes fun of me when I make a mistake in class."
     ]
   },
   {
@@ -48,8 +46,7 @@ const seedData = [
       "Llegué a la oficina y todos hablaban al mismo tiempo, ¡qué quilombo!"
     ],
     "examplesTranslation": [
-      "He couldn't go out because he is in the middle of a complicated situation with his parents.",
-      "Look at the mess you have made in your bedroom!"
+      "I arrived at the office and everyone was talking at once—it was total chaos!"
     ],
     "countryVariations": {
       "English": [
@@ -57,7 +54,7 @@ const seedData = [
           "country": "USA",
           "variation": "A hot mess!",
           "examples": [
-            "He couldn't go out because he is in the middle of a hot mess with his parents."
+            "I walked into the meeting and everyone was arguing—what a hot mess!"
           ]
         }
       ]
@@ -73,7 +70,7 @@ const seedData = [
       "Cuando los niños empezaron a gritar, mi mamá se puso la gorra y puso orden enseguida."
     ],
     "examplesTranslation": [
-      "The neighbors complained because the building owner decided to get strict and banned parties after 10 p.m."
+      "When the children started shouting, my mom put her foot down and immediately restored order."
     ]
   },
   {
@@ -86,7 +83,7 @@ const seedData = [
       "Hoy tengo ganas de salir a caminar."
     ],
     "examplesTranslation": [
-      "I am in the mood for watching a movie."
+      "Today I feel like going out for a walk."
     ],
     "countryVariations": {
       "English": [
@@ -94,7 +91,7 @@ const seedData = [
           "country": "General",
           "variation": "To feel like",
           "examples": [
-            "I feel like watching a movie."
+            "I feel like going for a walk today."
           ]
         }
       ]
@@ -110,7 +107,7 @@ const seedData = [
       "Lo siento, no quería meter la pata en la reunión de ayer."
     ],
     "examplesTranslation": [
-      "I just messed up. I asked Elena about her party, and it turns out it was a surprise party."
+      "I'm sorry, I didn't mean to make a mistake in yesterday's meeting."
     ],
     "countryVariations": {
       "English": [
@@ -118,7 +115,7 @@ const seedData = [
           "country": "USA",
           "variation": "To screw up",
           "examples": [
-            "I just screwed up. I asked Elena about her party, and it turns out it was a surprise party."
+            "I'm sorry, I didn't mean to screw up during yesterday's meeting."
           ]
         }
       ]
@@ -134,7 +131,7 @@ const seedData = [
       "Después de varios intentos fallidos, decidió tirar la toalla."
     ],
     "examplesTranslation": [
-      "After many attempts to convince my boss to implement my idea, I finally gave up and accepted that he wouldn't change his mind."
+      "After several failed attempts, he decided to give up."
     ],
     "countryVariations": {
       "English": [
@@ -142,14 +139,14 @@ const seedData = [
           "country": "England",
           "variation": "To throw in the sponge",
           "examples": [
-            "After many attempts to convince my boss to implement my idea, I finally threw in the sponge and accepted that he wouldn't change his mind."
+            "After struggling with the project for weeks, he finally decided to throw in the sponge."
           ]
         },
         {
           "country": "USA",
           "variation": "To throw in the towel",
           "examples": [
-            "After many attempts to convince my boss to implement my idea, I finally threw in the towel and accepted that he wouldn't change his mind."
+            "After struggling with the project for weeks, she finally decided to throw in the towel."
           ]
         }
       ]
@@ -165,7 +162,7 @@ const seedData = [
       "Después de nuestra discusión, decidimos perdonarnos y empezar de cero."
     ],
     "examplesTranslation": [
-      "After all the fights and misunderstandings, we decided to move forward and start over in our friendship."
+      "After our argument, we decided to forgive each other and make a fresh start."
     ]
   },
   {
@@ -178,7 +175,7 @@ const seedData = [
       "Tuve que invitarlo a cenar para sacarle la sopa sobre el proyecto."
     ],
     "examplesTranslation": [
-      "Don't worry, friend, I will get the information out of him, and we'll find out what happened."
+      "I had to invite him to dinner to get him to spill the beans about the project."
     ],
     "countryVariations": {
       "English": [
@@ -186,7 +183,7 @@ const seedData = [
           "country": "England",
           "variation": "To grill someone",
           "examples": [
-            "Don't worry, friend, I'll grill him, and we'll find out what happened."
+            "I had to buy him a pint just to grill him about the new project."
           ]
         }
       ]
@@ -202,7 +199,7 @@ const seedData = [
       "Cuando le conté mi problema, solo me dio el avión y cambió de tema."
     ],
     "examplesTranslation": [
-      "I was asking for directions from someone, but they completely ignored me, not paying any attention."
+      "When I told him about my problem, he just pretended to listen and changed the subject."
     ]
   },
   {
@@ -215,7 +212,7 @@ const seedData = [
       "¡Aguas, ahí viene el coche!"
     ],
     "examplesTranslation": [
-      "Be careful with that person, they are very cunning!"
+      "Watch out, here comes the car!"
     ],
     "countryVariations": {
       "English": [
@@ -223,7 +220,7 @@ const seedData = [
           "country": "USA",
           "variation": "Watch out!",
           "examples": [
-            "Watch out with that person, they are very cunning."
+            "Watch out, there's a car coming!"
           ]
         }
       ]
@@ -239,7 +236,7 @@ const seedData = [
       "Cuando le pidieron que apagara la música, empezó a hacerla de tos."
     ],
     "examplesTranslation": [
-      "Whenever they gather, he causes trouble, and they end up feeling angry."
+      "When they asked him to turn off the music, he started making a fuss."
     ]
   },
   {
@@ -252,7 +249,7 @@ const seedData = [
       "Ayer conocí a tu hermano, ¡qué majo!"
     ],
     "examplesTranslation": [
-      "Lorena is really nice; she always has a smile for others."
+      "Yesterday I met your brother—what a nice guy!"
     ],
     "countryVariations": {
       "English": [
@@ -260,7 +257,7 @@ const seedData = [
           "country": "USA",
           "variation": "What a gem!",
           "examples": [
-            "Lorena is really nice; she always has a smile for others. What a gem!"
+            "I met your brother yesterday—what a gem!"
           ]
         }
       ],
@@ -269,7 +266,7 @@ const seedData = [
           "country": "Argentina",
           "variation": "Ser copado, ser copada",
           "examples": [
-            "Lorena es una copada, siempre tiene una sonrisa para los demás."
+            "Ayer conocí a tu hermano, ¡re copado!"
           ]
         }
       ]
@@ -285,7 +282,7 @@ const seedData = [
       "¡Me mola tu camiseta!"
     ],
     "examplesTranslation": [
-      "Your car is really cool!"
+      "I really like your t-shirt!"
     ],
     "countryVariations": {
       "Spanish": [
@@ -293,7 +290,7 @@ const seedData = [
           "country": "Argentina",
           "variation": "Me copa",
           "examples": [
-            "¡Me copa tu auto!."
+            "¡Me copa esta banda!"
           ]
         }
       ]
@@ -309,7 +306,7 @@ const seedData = [
       "¡La fiesta de anoche fue una pasada!"
     ],
     "examplesTranslation": [
-      "That play he made is amazing. There is no doubt he is the best football player on the team."
+      "The party last night was amazing!"
     ]
   },
   {
@@ -322,7 +319,7 @@ const seedData = [
       "Deja de hacer el gilipollas y ponte a trabajar."
     ],
     "examplesTranslation": [
-      "He drank a lot of alcohol the other night and started behaving foolishly."
+      "Stop fooling around and get to work."
     ],
     "countryVariations": {
       "English": [
@@ -330,7 +327,7 @@ const seedData = [
           "country": "USA",
           "variation": "To act like a jackass",
           "examples": [
-            "He drank a lot of alcohol the other night and started acting like a jackass."
+            "Stop acting like a jackass and get back to work."
           ]
         }
       ]
@@ -346,7 +343,7 @@ const seedData = [
       "It was brass monkeys outside this morning—I could barely feel my fingers!"
     ],
     "examplesTranslation": [
-      "¡Abrígate bien! Hace mucho frío afuera."
+      "Esta mañana hacía un frío tremendo afuera; ¡apenas podía sentir los dedos!"
     ],
     "countryVariations": {
       "English": [
@@ -354,7 +351,7 @@ const seedData = [
           "country": "USA",
           "variation": "colder than a witch's tit outside",
           "examples": [
-            "Bundled up! It's colder than a witch's tit outside"
+            "Man, it's colder than a witch's tit outside—I should've worn two jackets!"
           ]
         }
       ],
@@ -363,7 +360,7 @@ const seedData = [
           "country": "Argentina",
           "variation": "Un frío de cagarse",
           "examples": [
-            "¡Abrígate bien! Hace un frío de cagarse afuera.."
+            "Cuando salí a la calle esta mañana, hacía un frío de cagarse; no sentía las manos."
           ]
         }
       ]
@@ -379,7 +376,7 @@ const seedData = [
       "After that long hike, I'm absolutely knackered."
     ],
     "examplesTranslation": [
-      "Debes estar exhausto después de un largo día en la oficina."
+      "Después de esa larga caminata, estoy completamente agotado."
     ]
   },
   {
@@ -392,7 +389,7 @@ const seedData = [
       "You've been so quiet—penny for your thoughts?"
     ],
     "examplesTranslation": [
-      "Noté que María estaba pensativa mientras miraba el cuadro. Sonreí y le dije: ¿En qué estás pensando?"
+      "Has estado muy callado(a), ¿en qué piensas?"
     ]
   },
   {
@@ -405,7 +402,7 @@ const seedData = [
       "He says he can run a mile in three minutes—that's absolute codswallop."
     ],
     "examplesTranslation": [
-      "Un sin sentido, si me lo preguntas a mí."
+      "Él dice que puede correr una milla en tres minutos—eso es un completo disparate."
     ],
     "countryVariations": {
       "Spanish": [
@@ -413,7 +410,7 @@ const seedData = [
           "country": "Argentina",
           "variation": "Cualquiera",
           "examples": [
-            "Eso es cualquiera, si me lo preguntás a mí."
+            "Él dice que puece correr más de un kilómetro en tres minutos,¡re cualquiera!"
           ]
         }
       ]
@@ -429,7 +426,7 @@ const seedData = [
       "Stop beating around the bush and tell me what you really think."
     ],
     "examplesTranslation": [
-      "Si quieres preguntarme, simplemente hazlo. No pierdas el tiempo."
+      "Deja de andarte por las ramas y dime lo que realmente piensas."
     ],
     "countryVariations": {
       "Spanish": [
@@ -437,14 +434,14 @@ const seedData = [
           "country": "Mexico",
           "variation": "No te andes con rodeos",
           "examples": [
-            "Si quieres preguntarme, hazlo. No te andes con rodeos."
+            "Ya dime la verdad, no te andes con rodeos."
           ]
         },
         {
           "country": "Argentina",
           "variation": "No des tantas vueltas",
           "examples": [
-            "Si querés preguntarme, hacelo. No des tantas vueltas."
+            "Dale, no des tantas vueltas y decime de una vez qué te pasa."
           ]
         }
       ]
@@ -460,7 +457,7 @@ const seedData = [
       "We were just talking about Sarah, and look—here she comes!"
     ],
     "examplesTranslation": [
-      "Estaba hablando de Sarah cuando ella entró a la habitación. Qué coincidencia."
+      "¡Justo estábamos hablando de Sarah, y mira—ahí viene!"
     ],
     "countryVariations": {
       "Spanish": [
@@ -468,7 +465,7 @@ const seedData = [
           "country": "Mexico",
           "variation": "Hablando del rey de Roma",
           "examples": [
-            "Estaba hablando de Sarah cuando ella entró a la habitación. Hablando del rey de Roma."
+            "¡Hablando del rey de Roma! Justo estábamos platicando sobre Sarah y acaba de llegar."
           ]
         }
       ]
@@ -484,7 +481,7 @@ const seedData = [
       "If you think I broke your phone, you're barking up the wrong tree."
     ],
     "examplesTranslation": [
-      "El detective estaba equivocado cuando acusó a Tom de robar el dinero."
+      "Si crees que yo rompí tu teléfono, estás equivocado."
     ],
     "countryVariations": {
       "Spanish": [
@@ -492,7 +489,7 @@ const seedData = [
           "country": "Argentina",
           "variation": "Buscándole el pelo al huevo",
           "examples": [
-            "El detective le estaba buscando el pelo al huevo cuando acusó a Tom de robar la plata."
+            "No busques el pelo al huevo, yo no fui el que rompió tu teléfono."
           ]
         }
       ]
@@ -508,7 +505,7 @@ const seedData = [
       "I'm really tired, so I'm going to hit the sack."
     ],
     "examplesTranslation": [
-      "Tuve un largo día de trabajo hoy, así que me iré a dormir temprano esta noche."
+      "Estoy muy cansado, así que me voy a dormir."
     ],
     "countryVariations": {
       "Spanish": [
@@ -516,7 +513,7 @@ const seedData = [
           "country": "Argentina",
           "variation": "irse al sobre.",
           "examples": [
-            "Tuve un largo día de trabajo hoy, así que voy a irme al sobre temprano esta noche."
+            "Estoy re cansado, me voy al sobre."
           ]
         }
       ]
@@ -532,7 +529,7 @@ const seedData = [
       "Just follow the instructions—it's not rocket science."
     ],
     "examplesTranslation": [
-      "Cocinar esta receta es simple. No es difícil, cualquiera puede hacerlo."
+      "Solo sigue las instrucciones; no es tan difícil."
     ],
     "countryVariations": {
       "Spanish": [
@@ -540,7 +537,7 @@ const seedData = [
           "country": "Argentina",
           "variation": "No es mucha ciencia",
           "examples": [
-            "Cocinar esta receta es simple. No es mucha ciencia, cualquiera puede hacerlo."
+            "Solo tenés que seguir las instrucciones, no es mucha ciencia."
           ]
         }
       ]
@@ -556,7 +553,7 @@ const seedData = [
       "She accidentally spilled the beans about the surprise party."
     ],
     "examplesTranslation": [
-      "He drank a lot of alcohol the other night and started behaving foolishly."
+      "Ella accidentalmente reveló el secreto sobre la fiesta sorpresa."
     ]
   },
   {
@@ -569,7 +566,7 @@ const seedData = [
       "After dinner, we decided to go Dutch and each paid for our own food."
     ],
     "examplesTranslation": [
-      "Cuando mis amigos y yo comemos afuera, cada uno paga lo que consumió."
+      "Después de cenar, decidimos pagar por separado y cada uno pagó lo suyo."
     ]
   }
 ];
