@@ -186,7 +186,7 @@ const IdiomDetailsScreen = ({ route }) => {
                       { key: 0, label: 'Select Country', value: '' },
                       { key: 1, label: 'Argentina', value: 'Argentina' },
                       { key: 2, label: 'Mexico', value: 'Mexico' },
-                      { key: 2, label: 'Spain', value: 'Spain' },
+                      { key: 3, label: 'Spain', value: 'Spain' },
                     ]}
                     initValue="Select Country"
                     onChange={(option) => setNewCountry(option.value)}

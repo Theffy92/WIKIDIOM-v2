@@ -10,7 +10,7 @@ import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
 import {API_KEY, AUTH_DOMAIN, PROJECT_ID, STORAGE_BUCKET, MESSAGING_SENDER_ID, APP_ID} from '@env';
 
-//Uncomment this to run the seeding file
+// Uncomment this to run the seeding file
 // const firebaseConfig = {
 //     apiKey: process.env.API_KEY,
 //     authDomain: process.env.AUTH_DOMAIN,
